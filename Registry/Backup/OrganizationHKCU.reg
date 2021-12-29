@@ -1,0 +1,358 @@
+;;==============================================================================
+;;
+;;  HKCU\Software\_gp 
+;;  EXPORTED ON 12/28/2021 9:42:56 PM
+;;==============================================================================
+;;  Ars Scriptum - made in quebec 2020 <guillaumeplante.qc>
+;;==============================================================================
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Software\_gp]
+
+[HKEY_CURRENT_USER\Software\_gp\Admin]
+
+[HKEY_CURRENT_USER\Software\_gp\Admin\credentials]
+"username"="sysop"
+"password"="01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e2586248d44716499988a701c3e39095000000000200000000001066000000010000200000001053803430be160b5ef4ad2d1796d2e42a4ec7e1524d59a8782c749df05e482a000000000e800000000200002000000046f1c53d14f64794ddfb64a3c4d870b2b314b3c9a888bd38e1cf3d6c6a419e3e1000000023330eb770c9d36457cf795b87f5715540000000bd036a18be018523e9d666d3808f499b9824873c0fbc80f555b4dfcc583acb2fc873f33e1af1f56d248c604411d2e2a981c328698cc1f5ebf0ff1ed1bdf32813"
+
+[HKEY_CURRENT_USER\Software\_gp\chocolatey]
+"InstallPath"="C:\\ProgramData\\chocolatey\\bin\\choco.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\credentials-manager]
+"Admin"=dword:61afe6ee
+
+[HKEY_CURRENT_USER\Software\_gp\development]
+
+[HKEY_CURRENT_USER\Software\_gp\development\build-automation]
+"DevelopmentRoot"="P:\\Development"
+"BuildAutomation"="P:\\Development\\BuildAutomation"
+
+[HKEY_CURRENT_USER\Software\_gp\development\dejainsight]
+"SdkDirectory"="P:\\Development\\DejaInsight"
+"Sdk_Incs"="P:\\Development\\DejaInsight\\include"
+"Sdk_Libs"="P:\\Development\\DejaInsight\\lib"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories]
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\AdminLoader]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\AdminLoader"
+"RepositoryUrl"="https://github.com/arsscriptum/AdminLoader.git"
+"Creation"="12/28/2021 9:09:18 PM"
+"LastUpdate"="12/28/2021 9:09:18 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\BuildAutomation]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\BuildAutomation"
+"RepositoryUrl"="https://github.com/arsscriptum/BuildAutomation.git"
+"Creation"="12/28/2021 9:09:18 PM"
+"LastUpdate"="12/28/2021 9:09:18 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\DejaInsight]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\DejaInsight"
+"RepositoryUrl"="https://github.com/arsscriptum/DejaInsight.git"
+"Creation"="12/28/2021 9:09:19 PM"
+"LastUpdate"="12/28/2021 9:09:19 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\HostsFileEditor]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\HostsFileEditor"
+"RepositoryUrl"="https://github.com/arsscriptum/HostsFileEditor.git"
+"Creation"="12/28/2021 9:09:19 PM"
+"LastUpdate"="12/28/2021 9:09:19 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\MemGrep]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\MemGrep"
+"RepositoryUrl"="https://github.com/arsscriptum/MemGrep.git"
+"Creation"="12/28/2021 9:09:19 PM"
+"LastUpdate"="12/28/2021 9:09:19 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\ProcessKill]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\ProcessKill"
+"RepositoryUrl"="https://github.com/arsscriptum/ProcessKill.git"
+"Creation"="12/28/2021 9:09:19 PM"
+"LastUpdate"="12/28/2021 9:09:19 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\ProcessManipulator]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\ProcessManipulator"
+"RepositoryUrl"="https://github.com/arsscriptum/ProcessManipulator.git"
+"Creation"="12/28/2021 9:09:20 PM"
+"LastUpdate"="12/28/2021 9:09:20 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\ServiceManipulator]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\ServiceManipulator"
+"RepositoryUrl"="https://github.com/arsscriptum/ServiceManipulator.git"
+"Creation"="12/28/2021 9:09:20 PM"
+"LastUpdate"="12/28/2021 9:09:20 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\SystemConfiguration]
+"User"="arsscriptum"
+"LocalPath"="P:\\SystemConfiguration"
+"RepositoryUrl"="git@github.com-arsscriptum:arsscriptum/SystemConfiguration.git"
+"Creation"="12/28/2021 9:20:36 PM"
+"LastUpdate"="12/28/2021 9:20:36 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\Template.Cpp.WindowsApp]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\Template.Cpp.WindowsApp"
+"RepositoryUrl"="https://github.com/arsscriptum/Template.Cpp.WindowsApp.git"
+"Creation"="12/28/2021 9:09:20 PM"
+"LastUpdate"="12/28/2021 9:09:20 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\Template.Dll.DynamicPlugin]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\Template.Dll.DynamicPlugin"
+"RepositoryUrl"="https://github.com/arsscriptum/Template.Dll.DynamicPlugin.git"
+"Creation"="12/28/2021 9:09:21 PM"
+"LastUpdate"="12/28/2021 9:09:21 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\Template.Dll.ReflectiveInjection]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\Template.Dll.ReflectiveInjection"
+"RepositoryUrl"="https://github.com/arsscriptum/Template.Dll.ReflectiveInjection.git"
+"Creation"="12/28/2021 9:09:21 PM"
+"LastUpdate"="12/28/2021 9:09:21 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\WinAppVersion]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\WinAppVersion"
+"RepositoryUrl"="https://github.com/arsscriptum/ProcessKill.git"
+"Creation"="12/28/2021 9:09:21 PM"
+"LastUpdate"="12/28/2021 9:09:21 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\WinEventBlocker]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\WinEventBlocker"
+"RepositoryUrl"="git@github.com-arsscriptum:arsscriptum/WinEventBlocker.git"
+"Creation"="12/28/2021 9:09:22 PM"
+"LastUpdate"="12/28/2021 9:09:22 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\development\repositories\WinSudo]
+"User"="arsscriptum"
+"LocalPath"="P:\\Development\\WinSudo"
+"RepositoryUrl"="https://github.com/arsscriptum/WinSudo.git"
+"Creation"="12/28/2021 9:09:22 PM"
+"LastUpdate"="12/28/2021 9:09:22 PM"
+"UseBuildautomation"="True"
+"ExportPath"="c:\\Programs\\SystemTools"
+"BuildConfig"="buildcfg.ini"
+"BuildScript"="Build.bat"
+
+[HKEY_CURRENT_USER\Software\_gp\github-anonymous]
+
+[HKEY_CURRENT_USER\Software\_gp\github-anonymous\credentials]
+"username"="a"
+"password"="01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e2586248d44716499988a701c3e390950000000002000000000010660000000100002000000089c1622555c44442c9f5da36afec3fa1a9dfa50de3efcdd0756fa47f1251d89c000000000e800000000200002000000069db9f0915e747589cb122f01efad9d9ee00ebc45efbdf1de5b57c62dff11f9b100000001534a7b05fcf85b749e78074934ca1bd400000004036e65f2e89c4904b3813e82ba2f2f4cf4929815319430706a8fe4e9a80740594346e6433269187a233ae065f3c411237dd6936c4c2a08126fa4175be12e11d"
+
+[HKEY_CURRENT_USER\Software\_gp\github-radicaltronic]
+
+[HKEY_CURRENT_USER\Software\_gp\github-radicaltronic\credentials]
+"username"="radicaltronic"
+"password"="01000000d08c9ddf0115d1118c7a00c04fc297eb01000000e2586248d44716499988a701c3e3909500000000020000000000106600000001000020000000a06b635e7f686b31c0decf3a782fdff3c4b8512f02848905b7b6fac9365b414b000000000e8000000002000020000000f20f0449e1f0b410ce5b69286910714a5d327b34de29517e849ce6cd8eb8eb9220000000502f110fb65e4c6056641bfd9a7805873981ae22ffd75866bfb91ec3409d4443400000000e56bfb22d048488a185ee21131ce5250965d03614bd74847538062a9b7c541cc82849edbb2d24000fdb2a463416cc9cfc7667e25911a765f5e95921d15e24bc"
+
+[HKEY_CURRENT_USER\Software\_gp\github.com]
+"access_token"="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"
+"hostname"="github.com"
+"default_clone_path"="P:\\Github-Repositories"
+"default_username"="arsscriptum"
+
+[HKEY_CURRENT_USER\Software\_gp\github.com\arsscriptum]
+"hostname"="github.com-arsscriptum"
+"access_token"="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"
+
+[HKEY_CURRENT_USER\Software\_gp\github.com\codecastor]
+"access_token"="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"
+"hostname"="github.com-codecastor"
+
+[HKEY_CURRENT_USER\Software\_gp\github.com\radicaltronic]
+"access_token"="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"
+"hostname"="github.com-radicaltronic"
+
+[HKEY_CURRENT_USER\Software\_gp\powershell]
+"Version"="7.2.0"
+"Edition"="Core"
+"InstallPath"="C:\\Programs\\PowerShell\\7"
+"DefaultModulePath"="c:\\documents\\powershell\\modules"
+
+[HKEY_CURRENT_USER\Software\_gp\powershell\Scripts]
+
+[HKEY_CURRENT_USER\Software\_gp\powershell\Scripts\AdminAutoElevate]
+"Script"="C:\\Scripts\\MicroProjects\\AutoElevate\\AutoElevate.ps1"
+"Command"="C:\\Scripts\\MicroProjects\\AutoElevate\\AutoElevate.ps1"
+"Arguments"="test test2 test2 tes3"
+
+[HKEY_CURRENT_USER\Software\_gp\PowerShell.Module.Core]
+"SourcePath"="C:\\DOCUMENTS\\PowerShell\\Module-Development\\PowerShell.Module.Core"
+
+[HKEY_CURRENT_USER\Software\_gp\PowerShell.ModuleBuilder]
+"BuildScriptPath"="C:\\DOCUMENTS\\PowerShell\\Projects\\PowerShell.ModuleBuilder\\Build.ps1"
+"ModuleBuilderPath"="C:\\DOCUMENTS\\PowerShell\\Projects\\PowerShell.ModuleBuilder"
+"BuildModuleScript"="C:\\DOCUMENTS\\PowerShell\\Projects\\PowerShell.ModuleBuilder\\Build-Module.ps1"
+"ModuleDevelopmentPath"="C:\\DOCUMENTS\\PowerShell\\Module-Development"
+
+[HKEY_CURRENT_USER\Software\_gp\pwsh-formater]
+"ScriptCondenseEnclosures"=dword:00000001
+"ScriptExpandFunctionBlocks"=dword:00000000
+"ScriptExpandNamedBlocks"=dword:00000000
+"ScriptExpandParameterBlocks"=dword:00000000
+"ScriptExpandStatementBlocks"=dword:00000000
+"ScriptExpandTypeAccelerators"=dword:00000001
+"ScriptFormatCodeIndentation"=dword:00000001
+"ScriptFormatCommandNames"=dword:00000001
+"ScriptFormatTypeNames"=dword:00000000
+"ScriptPadExpressions"=dword:00000000
+"ScriptPadOperators"=dword:00000000
+"ScriptReduceLineLength"=dword:00000000
+"ScriptRemoveStatementSeparators"=dword:00000000
+"ScriptRemoveSuperfluousSpaces"=dword:00000001
+"ScriptReplaceHereStrings"=dword:00000000
+"ScriptReplaceInvalidCharacters"=dword:00000000
+"ScriptTestCodeBlock"=dword:00000001
+
+[HKEY_CURRENT_USER\Software\_gp\RegThunderLauncher]
+
+[HKEY_CURRENT_USER\Software\_gp\RegThunderLauncher\favourites]
+"max"="0"
+
+[HKEY_CURRENT_USER\Software\_gp\RegThunderLauncher\recents]
+"max"="2"
+"1"="Computer\\HKEY_CURRENT_USER\\System\\CurrentControlSet"
+"2"="Computer\\HKEY_CURRENT_USER\\System\\CurrentControlSet"
+
+[HKEY_CURRENT_USER\Software\_gp\shims]
+"shims_location"="c:\\Programs\\Shims"
+"shimgen_exe_path"="C:\\Programs\\SystemTools\\shimgen.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\araxis]
+"target"="C:\\Program Files\\Araxis\\Araxis Merge\\Merge.exe"
+"shim"="C:\\Programs\\Shims\\araxis.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\cmd.exe]
+"target"="C:\\WINDOWS\\system32\\cmd.exe"
+"shim"="C:\\Programs\\Shims\\cmd.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\compare]
+"target"="C:\\Program Files\\Araxis\\Araxis Merge\\ConsoleCompare.exe"
+"shim"="C:\\Programs\\Shims\\compare.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\ConsoleCompare]
+"target"="C:\\Program Files\\Araxis\\Araxis Merge\\ConsoleCompare.exe"
+"shim"="C:\\Programs\\Shims\\ConsoleCompare.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\DownloadCompleted.exe]
+"target"="C:\\Programs\\SystemTools\\DownloadCompleted.exe"
+"shim"="c:\\Programs\\Shims\\DownloadCompleted.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\gsudo]
+"target"="C:\\ProgramData\\chocolatey\\lib\\gsudo\\bin\\gsudo.exe"
+"shim"="C:\\Programs\\Shims\\gsudo.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\HTTPNetworkSniffer.exe]
+"target"="C:\\Programs\\Nirsoft\\HTTPNetworkSniffer.exe"
+"shim"="C:\\Programs\\Shims\\HTTPNetworkSniffer.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\Merge]
+"target"="C:\\Program Files\\Araxis\\Araxis Merge\\Merge.exe"
+"shim"="C:\\Programs\\Shims\\Merge.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\nbfc]
+"target"="C:\\Program Files (x86)\\NoteBook FanControl\\nbfc.exe"
+"shim"="C:\\Programs\\Shims\\nbfc.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\ntrights.exe]
+"target"="C:\\Scripts\\Modules\\NtRights\\bin\\ntrights.exe"
+"shim"="c:\\Programs\\Shims\\ntrights.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\reged.exe]
+"target"="C:\\Programs\\SystemTools\\reged.exe"
+"shim"="c:\\Programs\\Shims\\reged.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\setacl]
+"target"="C:\\Programs\\setacl-tools\\SetACL-64.exe"
+"shim"="C:\\Programs\\Shims\\setacl.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\speed]
+"target"="C:\\Programs\\SpeedTest\\speedtest.exe"
+"shim"="c:\\Programs\\Shims\\speed.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\terminal]
+"target"="C:\\Program Files\\WindowsApps\\Microsoft.WindowsTerminal_1.11.2921.0_x64__8wekyb3d8bbwe\\wt.exe"
+"shim"="C:\\Programs\\Shims\\terminal.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\vs2015]
+"target"="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\devenv.exe"
+"shim"="c:\\Programs\\Shims\\vs2015.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\shims\vs2019]
+"target"="C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Community\\Common7\\IDE\\devenv.exe"
+"shim"="c:\\Programs\\Shims\\vs2019.exe"
+
+[HKEY_CURRENT_USER\Software\_gp\windows.terminal]
+"StartingDirectory"="P:\\Development\\WinEventBlocker"
+"UseRegistryStartingDirectory"="1"
+"Settings"="C:\\Users\\radic\\AppData\\Local\\Packages\\Microsoft.WindowsTerminal_8wekyb3d8bbwe\\LocalState\\settings.json"
+"Single"="wt new-tab -p \"Core\""
+"Dual"="new-tab -p \"Core\" ; split-pane -p \"Core\" -H;"
+
+
