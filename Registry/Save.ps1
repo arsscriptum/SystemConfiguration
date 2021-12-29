@@ -8,7 +8,7 @@ param ()
 
 
 $CurrentPath = (Get-Location).Path
-$BackupPath = Join-Path $CurrentPath 'Backup'
+$BackupPath = Join-Path $CurrentPath "Backup-$ENV:COMPUTERNAME"
 $BackupFile = Join-Path $BackupPath 'OrganizationHKCU.reg'
 $RegPath = "$ENV:OrganizationHKCU"
 $RegPath = $Path.Replace(':','')
