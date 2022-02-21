@@ -1,0 +1,87 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CURRENT_USER\Environment]
+"ADVENTOFCODE_PROOF"="1937198-20211211-8f19613d"
+"AutomationScriptsRoot"="P:\\Development\\BuildAutomation"
+"ChocolateyLastPathUpdate"="132829050173664018"
+"ChocolateyToolsLocation"="C:\\tools"
+"DEFAULT_GIT_USERNAME"="arsscriptum"
+"DefaultGithubRepositoryPath"="P:\\Github-Repositories"
+"DejaToolsRootDirectory"="P:\\Development\\DejaInsight"
+"DejaToolsSdkIncludes"="P:\\Development\\DejaInsight\\include"
+"DejaToolsSdkLibs"="P:\\Development\\DejaInsight\\lib"
+"Development"="P:\\Development"
+"DevelopmentRoot"="P:\\Development"
+"DisableRegistryUse"="false"
+"GithubDefaultClonePath"="P:\\Github-Repositories"
+"gpg"="C:\\Program Files (x86)\\gnupg\\bin"
+"GPG_BIN"="C:\\Program Files (x86)\\gnupg\\bin"
+"ModuleCore"="PowerShell.Module.Core"
+"OneDrive"=hex(2):43,00,3a,00,5c,00,55,00,73,00,65,00,72,00,73,00,5c,00,72,00,\
+  61,00,64,00,69,00,63,00,5c,00,4f,00,6e,00,65,00,44,00,72,00,69,00,76,00,65,\
+  00,00,00
+"OneDriveConsumer"=hex(2):43,00,3a,00,5c,00,55,00,73,00,65,00,72,00,73,00,5c,\
+  00,72,00,61,00,64,00,69,00,63,00,5c,00,4f,00,6e,00,65,00,44,00,72,00,69,00,\
+  76,00,65,00,00,00
+"OrganizationHKCU"="HKCU:\\Software\\_gp"
+"OrganizationHKLM"="HKLM:\\Software\\_gp"
+"Path"=hex(2):43,00,3a,00,5c,00,55,00,73,00,65,00,72,00,73,00,5c,00,72,00,61,\
+  00,64,00,69,00,63,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,\
+  4c,00,6f,00,63,00,61,00,6c,00,5c,00,4d,00,69,00,63,00,72,00,6f,00,73,00,6f,\
+  00,66,00,74,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,41,00,70,00,\
+  70,00,73,00,3b,00,43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,\
+  00,73,00,5c,00,53,00,70,00,65,00,65,00,64,00,54,00,65,00,73,00,74,00,3b,00,\
+  43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,73,00,5c,00,53,\
+  00,68,00,69,00,6d,00,73,00,3b,00,25,00,48,00,4f,00,4d,00,45,00,25,00,5c,00,\
+  62,00,69,00,6e,00,3b,00,43,00,3a,00,5c,00,53,00,63,00,72,00,69,00,70,00,74,\
+  00,73,00,3b,00,25,00,48,00,4f,00,4d,00,45,00,25,00,5c,00,53,00,63,00,72,00,\
+  69,00,70,00,74,00,73,00,3b,00,43,00,3a,00,5c,00,55,00,73,00,65,00,72,00,73,\
+  00,5c,00,72,00,61,00,64,00,69,00,63,00,5c,00,41,00,70,00,70,00,44,00,61,00,\
+  74,00,61,00,5c,00,4c,00,6f,00,63,00,61,00,6c,00,5c,00,47,00,69,00,74,00,48,\
+  00,75,00,62,00,44,00,65,00,73,00,6b,00,74,00,6f,00,70,00,5c,00,62,00,69,00,\
+  6e,00,3b,00,43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,20,\
+  00,46,00,69,00,6c,00,65,00,73,00,20,00,28,00,78,00,38,00,36,00,29,00,5c,00,\
+  4e,00,6d,00,61,00,70,00,3b,00,43,00,3a,00,5c,00,55,00,73,00,65,00,72,00,73,\
+  00,5c,00,72,00,61,00,64,00,69,00,63,00,5c,00,61,00,70,00,70,00,73,00,5c,00,\
+  67,00,73,00,75,00,64,00,6f,00,3b,00,43,00,3a,00,5c,00,55,00,73,00,65,00,72,\
+  00,73,00,5c,00,72,00,61,00,64,00,69,00,63,00,5c,00,41,00,70,00,70,00,44,00,\
+  61,00,74,00,61,00,5c,00,52,00,6f,00,61,00,6d,00,69,00,6e,00,67,00,5c,00,6e,\
+  00,70,00,6d,00,3b,00,43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,\
+  6d,00,44,00,61,00,74,00,61,00,5c,00,63,00,68,00,6f,00,63,00,6f,00,6c,00,61,\
+  00,74,00,65,00,79,00,5c,00,6c,00,69,00,62,00,5c,00,72,00,61,00,77,00,63,00,\
+  61,00,70,00,5c,00,74,00,6f,00,6f,00,6c,00,73,00,5c,00,72,00,61,00,77,00,63,\
+  00,61,00,70,00,3b,00,43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,61,00,\
+  6d,00,73,00,5c,00,47,00,69,00,74,00,48,00,75,00,62,00,43,00,4c,00,49,00,5c,\
+  00,3b,00,25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,00,\
+  45,00,25,00,5c,00,2e,00,64,00,6f,00,74,00,6e,00,65,00,74,00,5c,00,74,00,6f,\
+  00,6f,00,6c,00,73,00,3b,00,43,00,3a,00,5c,00,50,00,72,00,6f,00,67,00,72,00,\
+  61,00,6d,00,73,00,5c,00,47,00,6f,00,61,00,73,00,6d,00,3b,00,43,00,3a,00,5c,\
+  00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,73,00,5c,00,4e,00,69,00,72,00,\
+  73,00,6f,00,66,00,74,00,3b,00,00,00
+"PowerShellScriptsDev"="C:\\DOCUMENTS\\Powershell\\Sandbox"
+"ProjectsRoot"="P:\\Development"
+"PSDevPath"="C:\\DOCUMENTS\\Powershell\\Projets"
+"PSLoggingLogFileTest"="c:\\Temp\\TestScript.log"
+"PSLoggingLogFileTest2"="c:\\Temp\\TestScript.log"
+"PSModCore"="C:\\DOCUMENTS\\PowerShell\\Module-Development\\PowerShell.Module.Core"
+"PSModDev"="C:\\DOCUMENTS\\PowerShell\\Module-Development"
+"PSModGithub"="C:\\DOCUMENTS\\Powershell\\Module-Development\\PowerShell.Module.Github"
+"PSModuleBuilder"="C:\\DOCUMENTS\\PowerShell\\Projects\\PowerShell.ModuleBuilder"
+"PSModuleDevelopmentPath"="C:\\DOCUMENTS\\PowerShell\\Module-Development"
+"PSProfileDevelopmentRoot"="C:\\DOCUMENTS\\PowerShell\\Profile"
+"RefreshEnvScript"="C:\\ProgramData\\chocolatey\\bin\\RefreshEnv.cmd"
+"Sandbox"="P:\\Sandbox"
+"ScreenshotFolder"="c:\\Data\\Pictures\\Screenshot"
+"Scripts"="P:\\Scripts"
+"SystemScriptsPath"="P:\\Scripts\\System"
+"TEMP"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,\
+  00,45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,4c,00,\
+  6f,00,63,00,61,00,6c,00,5c,00,54,00,65,00,6d,00,70,00,00,00
+"TMP"=hex(2):25,00,55,00,53,00,45,00,52,00,50,00,52,00,4f,00,46,00,49,00,4c,00,\
+  45,00,25,00,5c,00,41,00,70,00,70,00,44,00,61,00,74,00,61,00,5c,00,4c,00,6f,\
+  00,63,00,61,00,6c,00,5c,00,54,00,65,00,6d,00,70,00,00,00
+"ToolsRoot"="c:\\Programs\\SystemTools"
+"wwwpath"="c:\\Users\\radic\\www"
+"wwwroot"="c:\\Users\\radic\\www"
+
+
