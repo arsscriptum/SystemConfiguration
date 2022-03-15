@@ -230,7 +230,7 @@ function Install-WindowsGit {
     }
 
     write-slog "$LocalInstaller /NORESTART /SUPPRESSMSGBOXES /VERYSILENT /SP /ALLUSERS /NOCANCEL /NOCLOSEAPPLICATIONS /DIR=$InstallPath"
-
+    
     # Args: https://jrsoftware.org/ishelp/index.php?topic=setupcmdline
     &"$LocalInstaller" "/NORESTART" "/SUPPRESSMSGBOXES" "/VERYSILENT" "/SP" "/ALLUSERS" "/NOCANCEL" "/NOCLOSEAPPLICATIONS" "/DIR=`"$InstallPath`""
 }
@@ -523,7 +523,7 @@ function Set-RegistryOrganizationHKCU {
 
 
 
-
+<#
 ValidateBeforeStart 
 
 
@@ -539,10 +539,11 @@ Set-WellKnownPaths
 Read-Host 'Next: Set-PowerShellPaths'
 Set-PowerShellPaths
 
-
+#>
 Read-Host 'Next: Invoke-InstallWindowsGit'
 Invoke-InstallWindowsGit
 Wait-GitInstalled 
+return
 
 git config --global user.email "guillaumeplante.qc@gmail.com"
 git config --global user.name "Guillaume Plante"

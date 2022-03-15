@@ -1,0 +1,46 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Environment]
+"asl.log"="Destination=file"
+"AXPROTECTOR_SDK"="C:\\Program Files (x86)\\WIBU-SYSTEMS\\AxProtector\\Devkit\\"
+"ChocolateyInstall"="C:\\ProgramData\\chocolatey"
+"CODEMETER_SAMPLES"="C:\\Users\\Public\\Documents\\WIBU-SYSTEMS\\"
+"CODEMETER_SDK"="C:\\Program Files (x86)\\CodeMeter\\DevKit\\"
+"CommonLibraryPath"="c:\\Windows\\CommonLibraryPath"
+"ComSpec"=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,\
+  74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,00,33,00,32,00,5c,00,63,\
+  00,6d,00,64,00,2e,00,65,00,78,00,65,00,00,00
+"DEVTEMP"="P:\\Temp"
+"DriverData"="C:\\Windows\\System32\\Drivers\\DriverData"
+"NirsoftPath"="c:\\Programs\\Nirsoft"
+"NUMBER_OF_PROCESSORS"="4"
+"OS"="Windows_NT"
+"Path"="C:\\Python310\\Scripts\\;C:\\Python310\\;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\ProgramData\\chocolatey\\bin;C:\\Programs\\PowerShell\\7\\;C:\\Programs\\Shims;C:\\Programs\\Git\\cmd;C:\\Users\\radic\\.dnx\\bin;C:\\Program Files\\Microsoft DNX\\Dnvm\\;C:\\Program Files (x86)\\Windows Kits\\8.1\\Windows Performance Toolkit\\;C:\\Program Files\\Microsoft SQL Server\\130\\Tools\\Binn\\;C:\\Program Files\\Salt Project\\Salt;C:\\ProgramData\\chocolatey\\lib\\gsudo\\bin\\;C:\\Program Files (x86)\\gnupg\\bin;C:\\Program Files\\CMake\\bin;C:\\Program Files\\nodejs\\;C:\\Program Files (x86)\\GNU\\GnuPG\\pub;C:\\Program Files (x86)\\NoteBook FanControl\\;C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance Toolkit\\;C:\\Program Files (x86)\\CodeMeter\\DevKit\\bin\\;C:\\Program Files (x86)\\CodeMeter\\Runtime\\bin\\;C:\\Programs\\SystemTools;C:\\Program Files\\dotnet\\;C:\\Programs\\Goasm;C:\\Programs\\SublimeText3;C:\\Programs\\FlatAssembler;"
+"PATHEXT"=".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW"
+"POWERSHELL_DISTRIBUTION_CHANNEL"="MSI:Windows 10 Home"
+"PROCESSOR_ARCHITECTURE"="AMD64"
+"PROCESSOR_IDENTIFIER"="AMD64 Family 21 Model 48 Stepping 1, AuthenticAMD"
+"PROCESSOR_LEVEL"="21"
+"PROCESSOR_REVISION"="3001"
+"Programs"="c:\\Programs"
+"PSModulePath"=hex(2):25,00,50,00,72,00,6f,00,67,00,72,00,61,00,6d,00,46,00,69,\
+  00,6c,00,65,00,73,00,25,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,\
+  50,00,6f,00,77,00,65,00,72,00,53,00,68,00,65,00,6c,00,6c,00,5c,00,4d,00,6f,\
+  00,64,00,75,00,6c,00,65,00,73,00,3b,00,25,00,53,00,79,00,73,00,74,00,65,00,\
+  6d,00,52,00,6f,00,6f,00,74,00,25,00,5c,00,73,00,79,00,73,00,74,00,65,00,6d,\
+  00,33,00,32,00,5c,00,57,00,69,00,6e,00,64,00,6f,00,77,00,73,00,50,00,6f,00,\
+  77,00,65,00,72,00,53,00,68,00,65,00,6c,00,6c,00,5c,00,76,00,31,00,2e,00,30,\
+  00,5c,00,4d,00,6f,00,64,00,75,00,6c,00,65,00,73,00,00,00
+"pwshtools"="C:\\Scripts\\Modules\\CodeCastor.PowerShell.Core"
+"SystemIcons"="c:\\Windows\\icons"
+"TEMP"=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,\
+  00,25,00,5c,00,54,00,45,00,4d,00,50,00,00,00
+"TMP"=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,00,\
+  25,00,5c,00,54,00,45,00,4d,00,50,00,00,00
+"ToolsRoot"="c:\\Programs"
+"USERNAME"="SYSTEM"
+"VS140COMNTOOLS"="C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\Tools\\"
+"windir"=hex(2):25,00,53,00,79,00,73,00,74,00,65,00,6d,00,52,00,6f,00,6f,00,74,\
+  00,25,00,00,00
+
+
