@@ -67,30 +67,30 @@ Requirements:
 # SCRIPT VARIABLES
 # ============================================================================================================
 
-$Script:DEVDRIVE               = 'P:\'
-$Script:DEV_ROOT               = 'P:\Development'
-$Script:REG_USER_ENV           = "$PSScriptRoot\Environment\UserEnv.reg"
-$Script:REG_GLOBAL_ENV         = "$PSScriptRoot\Environment\GlobalEnv.reg"
-$Script:OrganizationHKCUScript = "$PSScriptRoot\Registry\OrganizationHKCU.reg"
+$Global:DEVDRIVE               = 'P:\'
+$Global:DEV_ROOT               = 'P:\Development'
+$Global:REG_USER_ENV           = "$PSScriptRoot\Environment\UserEnv.reg"
+$Global:REG_GLOBAL_ENV         = "$PSScriptRoot\Environment\GlobalEnv.reg"
+$Global:OrganizationHKCUScript = "$PSScriptRoot\Registry\OrganizationHKCU.reg"
 
-$Script:GIT_WINDOWS_64_URL      = 'https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe'
-$Script:PROGRAMS_PATH           = 'c:\Programs'
-$Script:WIN_GIT_INSTALL_PATH    = Join-Path "$Script:PROGRAMS_PATH" "Git"
-$Script:MYDOCUMENTS_PATH        = 'c:\DOCUMENTS'
-$Script:MYPICTURES_PATH         = 'c:\Data\Pictures'
-$Script:MYVIDEOS_PATH           = 'c:\Data\Videos'
-$Script:SCREENSHOTS_PATH        = 'c:\Data\Pictures\Screenshots'
-$Script:DOWNLOAD_PATH           = 'c:\Data\Downloads' 
-$Script:DESKTOP_PATH            = 'c:\Data\Windows\Desktop' 
+$Global:GIT_WINDOWS_64_URL      = 'https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe'
+$Global:PROGRAMS_PATH           = 'c:\Programs'
+$Global:WIN_GIT_INSTALL_PATH    = Join-Path "$Global:PROGRAMS_PATH" "Git"
+$Global:MYDOCUMENTS_PATH        = 'c:\DOCUMENTS'
+$Global:MYPICTURES_PATH         = 'c:\Data\Pictures'
+$Global:MYVIDEOS_PATH           = 'c:\Data\Videos'
+$Global:SCREENSHOTS_PATH        = 'c:\Data\Pictures\Screenshots'
+$Global:DOWNLOAD_PATH           = 'c:\Data\Downloads' 
+$Global:DESKTOP_PATH            = 'c:\Data\Windows\Desktop' 
 
-$Script:POWERSHELL_PATH         = Join-Path "$Script:MYDOCUMENTS_PATH" "PowerShell"
-$Script:PS_MODULES_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Modules"
-$Script:PS_MODDEV_PATH          = Join-Path "$Script:POWERSHELL_PATH" "Modules-Development"
-$Script:PS_PROFILE_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Profile"
-$Script:PS_PROJECTS_PATH        = Join-Path "$Script:POWERSHELL_PATH" "Projects"
+$Global:POWERSHELL_PATH         = Join-Path "$Global:MYDOCUMENTS_PATH" "PowerShell"
+$Global:PS_MODULES_PATH         = Join-Path "$Global:POWERSHELL_PATH" "Modules"
+$Global:PS_MODDEV_PATH          = Join-Path "$Global:POWERSHELL_PATH" "Modules-Development"
+$Global:PS_PROFILE_PATH         = Join-Path "$Global:POWERSHELL_PATH" "Profile"
+$Global:PS_PROJECTS_PATH        = Join-Path "$Global:POWERSHELL_PATH" "Projects"
 
-$Script:GITHUB_AUTH_USER        = 'arsscriptum'
-$Script:GITHUB_AUTH_TOKEN       = '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'
+$Global:GITHUB_AUTH_USER        = 'arsscriptum'
+$Global:GITHUB_AUTH_TOKEN       = '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'
 
 
 
@@ -98,7 +98,7 @@ if (-not $env:TEMP) {
     $env:TEMP = Join-Path $env:SystemDrive -ChildPath 'temp'
 }
 
-$Script:TEMP_INSTALL_PATH = Join-Path $env:TEMP -ChildPath "SystemConfiguration"
+$Global:TEMP_INSTALL_PATH = Join-Path $env:TEMP -ChildPath "SystemConfiguration"
 
 
 function Invoke-GitClone {
@@ -117,9 +117,9 @@ function Invoke-GitClone {
     if ($PSBoundParameters.ContainsKey('Name')) {
         Write-Host '[GIT] ' -f DarkRed -NoNewLine
         Write-Host "clone $Repo.git" -f Yellow            
-        &"$GitExe" "clone" "https://$Script:GITHUB_AUTH_USER:$Script:GITHUB_AUTH_TOKEN@github.com/$Script:GITHUB_AUTH_USER/$Repo.git" "$Name"
+        &"$GitExe" "clone" "https://$Global:GITHUB_AUTH_USER:$Global:GITHUB_AUTH_TOKEN@github.com/$Global:GITHUB_AUTH_USER/$Repo.git" "$Name"
     }else{
-        &"$GitExe" "clone" "https://$Script:GITHUB_AUTH_USER:$Script:GITHUB_AUTH_TOKEN@github.com/$Script:GITHUB_AUTH_USER/$Repo.git"    
+        &"$GitExe" "clone" "https://$Global:GITHUB_AUTH_USER:$Global:GITHUB_AUTH_TOKEN@github.com/$Global:GITHUB_AUTH_USER/$Repo.git"    
     }  
     
     
@@ -153,10 +153,10 @@ function write-serror {
 
 function ValidateBeforeStart {
 
-    if(-not(Test-Path -Path $Script:DEVDRIVE))              { write-serror "NOT EXISTING: $Script:DEVDRIVE" }
-    if(-not(Test-Path -Path $Script:REG_USER_ENV))          { write-serror "NOT EXISTING: $Script:REG_USER_ENV" }
-    if(-not(Test-Path -Path $Script:REG_GLOBAL_ENV))        { write-serror "NOT EXISTING: $Script:REG_GLOBAL_ENV" }
-    if(-not(Test-Path -Path $Script:OrganizationHKCUScript)){ write-serror "NOT EXISTING: $Script:OrganizationHKCUScript" }
+    if(-not(Test-Path -Path $Global:DEVDRIVE))              { write-serror "NOT EXISTING: $Global:DEVDRIVE" }
+    if(-not(Test-Path -Path $Global:REG_USER_ENV))          { write-serror "NOT EXISTING: $Global:REG_USER_ENV" }
+    if(-not(Test-Path -Path $Global:REG_GLOBAL_ENV))        { write-serror "NOT EXISTING: $Global:REG_GLOBAL_ENV" }
+    if(-not(Test-Path -Path $Global:OrganizationHKCUScript)){ write-serror "NOT EXISTING: $Global:OrganizationHKCUScript" }
 }
 
 function Get-OnlineFileNoCache{
@@ -340,12 +340,12 @@ function Set-WellKnownPaths {
     Write-Host "WELL KNOWN PATHS (DOCUMENTS, PICTURES, ETC)"
     Write-Host "======================================================"
 
-    Write-Host "Desktop:         $Script:DESKTOP_PATH"
-    Write-Host "Pictures:        $Script:MYPICTURES_PATH"
-    Write-Host "Screenshots:     $Script:SCREENSHOTS_PATH"
-    Write-Host "Download:        $Script:DOWNLOAD_PATH"
-    Write-Host "Documents:       $Script:MYDOCUMENTS_PATH"
-    Write-Host "Videos:          $Script:MYVIDEOS_PATH"
+    Write-Host "Desktop:         $Global:DESKTOP_PATH"
+    Write-Host "Pictures:        $Global:MYPICTURES_PATH"
+    Write-Host "Screenshots:     $Global:SCREENSHOTS_PATH"
+    Write-Host "Download:        $Global:DOWNLOAD_PATH"
+    Write-Host "Documents:       $Global:MYDOCUMENTS_PATH"
+    Write-Host "Videos:          $Global:MYVIDEOS_PATH"
 
     $confirm = Read-Host -Prompt 'Are all the paths above correct (y/n)'
     if ($confirm -ne 'y') {
@@ -355,19 +355,19 @@ function Set-WellKnownPaths {
     }
 
     # MY DOCUMENTS
-    New-Item -Path "$Script:DESKTOP_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:MYPICTURES_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:SCREENSHOTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:DOWNLOAD_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:MYDOCUMENTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:MYVIDEOS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:DESKTOP_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:MYPICTURES_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:SCREENSHOTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:DOWNLOAD_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:MYDOCUMENTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:MYVIDEOS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
 
     # POWERSHELL PROFILE
-    New-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Personal -Value "$Script:MYDOCUMENTS_PATH" -Type ExpandString -Force | Out-Null
-    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Desktop -Value "$Script:DESKTOP_PATH" -Type ExpandString -Force | Out-Null
-    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' 'My Pictures' -Value "$Script:MYPICTURES_PATH" -Type ExpandString -Force | Out-Null
-    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' 'My Video' -Value "$Script:MYVIDEOS_PATH" -Type ExpandString -Force | Out-Null
+    New-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Personal -Value "$Global:MYDOCUMENTS_PATH" -Type ExpandString -Force | Out-Null
+    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' Desktop -Value "$Global:DESKTOP_PATH" -Type ExpandString -Force | Out-Null
+    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' 'My Pictures' -Value "$Global:MYPICTURES_PATH" -Type ExpandString -Force | Out-Null
+    Set-ItemProperty 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders' 'My Video' -Value "$Global:MYVIDEOS_PATH" -Type ExpandString -Force | Out-Null
 }
 
 
@@ -381,11 +381,11 @@ function Set-PowerShellPaths {
     Write-Host "SET POWERSHELL HOME, MODULES, MODULE DEVELOPMENT PATH"
     Write-Host "======================================================"
 
-    Write-Host "PowerShell Home:   $Script:POWERSHELL_PATH"
-    Write-Host "Modules:           $Script:PS_MODULES_PATH"
-    Write-Host "Modules Dev:       $Script:PS_MODDEV_PATH"
-    Write-Host "Projects:          $Script:PS_PROJECTS_PATH"
-    Write-Host "Profile:           $Script:PS_PROFILE_PATH"
+    Write-Host "PowerShell Home:   $Global:POWERSHELL_PATH"
+    Write-Host "Modules:           $Global:PS_MODULES_PATH"
+    Write-Host "Modules Dev:       $Global:PS_MODDEV_PATH"
+    Write-Host "Projects:          $Global:PS_PROJECTS_PATH"
+    Write-Host "Profile:           $Global:PS_PROFILE_PATH"
 
     $confirm = Read-Host -Prompt 'Are all the paths above correct (y/n)'
     if ($confirm -ne 'y') {
@@ -394,11 +394,11 @@ function Set-PowerShellPaths {
         return
     }
 
-    New-Item -Path "$Script:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:PS_MODULES_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:PS_MODDEV_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:PS_PROJECTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-    New-Item -Path "$Script:PS_PROFILE_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:PS_MODULES_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:PS_MODDEV_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:PS_PROJECTS_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:PS_PROFILE_PATH" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
 }
 
 
@@ -412,8 +412,8 @@ function Invoke-InstallWindowsGit {
     Write-Host "INSTALL WIN GIT"
     Write-Host "======================================================"
 
-    Write-Host "GIT Install Url :   $Script:GIT_WINDOWS_64_URL"
-    Write-Host "Git Install Path:   $Script:WIN_GIT_INSTALL_PATH"
+    Write-Host "GIT Install Url :   $Global:GIT_WINDOWS_64_URL"
+    Write-Host "Git Install Path:   $Global:WIN_GIT_INSTALL_PATH"
 
     $confirm = Read-Host -Prompt 'Install Windows Git ? (y/n)'
     if ($confirm -ne 'y') {
@@ -421,7 +421,7 @@ function Invoke-InstallWindowsGit {
         Write-Host -f DarkYellow " Exit. "
         return
     }
-    Install-WindowsGit -Url "$Script:GIT_WINDOWS_64_URL" -InstallPath "$Script:WIN_GIT_INSTALL_PATH"
+    Install-WindowsGit -Url "$Global:GIT_WINDOWS_64_URL" -InstallPath "$Global:WIN_GIT_INSTALL_PATH"
 }
 
 function Clone-BaseRepos {
@@ -430,9 +430,9 @@ function Clone-BaseRepos {
     param
     ()
 
-    New-Item -Path "$Script:DEV_ROOT" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
+    New-Item -Path "$Global:DEV_ROOT" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
 
-    pushd "$Script:DEV_ROOT"
+    pushd "$Global:DEV_ROOT"
 
     Invoke-GitClone 'BuildAutomation'
 
@@ -448,16 +448,17 @@ function Clone-PwshRepos {
     param
     ()
     
-    write-slog "Going in $ENV:TEMP"
-    pushd "$ENV:TEMP"
+    $NewDir = ((New-TemporaryDirectory).Fullname)
+    pushd $NewDir
+    
     write-slog "Cloning PowerShell.Profile"
     Invoke-GitClone 'PowerShell.Profile'
     pushd 'PowerShell.Profile'
-    write-slog "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
-    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH"
-
-    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
-    Copy-Item "Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse 
+    write-slog "COPY Microsoft.PowerShell_profile.ps1 --> to $Global:POWERSHELL_PATH"
+    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Global:POWERSHELL_PATH"      
+    popd
+    $Null=Remove-Item -Path "$Global:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
+    Copy-Item "PowerShell.Profile" "$Global:POWERSHELL_PATH\Profile" -Recurse 
 }
 
 function Clone-PwshModules {
@@ -466,14 +467,14 @@ function Clone-PwshModules {
     param
     ()
 
-    pushd "$Script:PS_PROJECTS_PATH"
+    pushd "$Global:PS_PROJECTS_PATH"
     Invoke-GitClone 'PowerShell.ModuleBuilder'
     pushd "PowerShell.ModuleBuilder\setup"
     ./Setup.ps1
     popd
 
 
-    pushd "$Script:PS_MODDEV_PATH"
+    pushd "$Global:PS_MODDEV_PATH"
 
     Invoke-GitClone 'PowerShell.Module.Core'
     Invoke-GitClone 'PowerShell.Module.Reddit'
@@ -497,7 +498,7 @@ function Set-RegistryOrganizationHKCU {
     if( ($ENV:OrganizationHKCU -eq $null) -Or ($ENV:OrganizationHKCU -eq '') )
     {
         Write-Host "===============================================================================" -f DarkRed    
-        Write-Host "A required environment variable needs to be setup (user scope)     `t" -NoNewLine -f DarkYellow ; Write-Host "$Script:OrganizationHKCU" -f Gray 
+        Write-Host "A required environment variable needs to be setup (user scope)     `t" -NoNewLine -f DarkYellow ; Write-Host "$Global:OrganizationHKCU" -f Gray 
         $OrgIdentifier = "_gp"
         $OrganizationHKCU = "HKCU:\Software\" + "$OrgIdentifier"
 
