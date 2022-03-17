@@ -73,9 +73,7 @@ $Script:QUIET_MODE             = "$Quiet"
 $Script:DEV_ROOT               = "$ENV:TEMP"
 $Script:SYSCONFIG_SCRIPTS      = "$PSScriptRoot\Scripts"
 $Script:CONFIGURE_SCRIPT_PATH  = "$SYSCONFIG_SCRIPTS\Configure.ps1"
-$Script:ASSEMBLIES_SCRIPT_PATH = "$SYSCONFIG_SCRIPTS\Assemblies.ps1"
-$Script:SYSLOG_SCRIPT_PATH     = "$SYSCONFIG_SCRIPTS\Syslog.ps1"
-$Script:EXCEPTION_SCRIPT_PATH  = "$SYSCONFIG_SCRIPTS\Exception.ps1"
+$Script:WINGIT_SCRIPT_PATH     = "$SYSCONFIG_SCRIPTS\WindowsGit.ps1"
 $Script:REG_USER_ENV           = "$SYSCONFIG_SCRIPTS\UserEnv.reg"
 $Script:REG_GLOBAL_ENV         = "$SYSCONFIG_SCRIPTS\GlobalEnv.reg"
 $Script:OrganizationHKCUScript = "$SYSCONFIG_SCRIPTS\OrganizationHKCU.reg"
@@ -92,7 +90,7 @@ $Script:DESKTOP_PATH            = 'c:\Data\Windows\Desktop'
 
 $Script:POWERSHELL_PATH         = Join-Path "$Script:MYDOCUMENTS_PATH" "PowerShell"
 $Script:PS_MODULES_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Modules"
-$Script:PS_MODDEV_PATH          = Join-Path "$Script:POWERSHELL_PATH" "Modules-Development"
+$Script:PS_MODDEV_PATH          = Join-Path "$Script:POWERSHELL_PATH" "Module-Development"
 $Script:PS_PROFILE_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Profile"
 $Script:PS_PROJECTS_PATH        = Join-Path "$Script:POWERSHELL_PATH" "Projects"
 
@@ -107,66 +105,48 @@ if (-not $env:TEMP) {
 $ErrorActionPreference = 'SilentlyContinue'
 
 
-
-function Clone-BaseRepos {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
-
-    New-Item -Path "$Script:DEV_ROOT" -ItemType Directory -Force -ErrorAction Ignore | Out-Null
-
-    pushd "$Script:DEV_ROOT"
-
-    Invoke-GitClone 'BuildAutomation'
-
-    Invoke-GitClone 'DejaInsight'
-    popd
-
-}
-
-
-function Clone-PwshRepos {
+function Install-Chocolatey{
 
     [CmdletBinding(SupportsShouldProcess)]
     param
     ()
-    
-    write-slog "Going in $ENV:TEMP"
-    pushd "$ENV:TEMP"
-    write-slog "Cloning PowerShell.Profile"
-    Invoke-GitClone 'PowerShell.Profile'
-    pushd 'PowerShell.Profile'
-    write-slog "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
-    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH"
-
-    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
-    Copy-Item "Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse 
+    Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 }
 
-function Clone-PwshModules {
+
+function Write-Title{
 
     [CmdletBinding(SupportsShouldProcess)]
     param
-    ()
+    (
+        [Parameter(Mandatory=$true,Position=0)]    
+        [string]$Title
+    )
 
-    pushd "$Script:PS_PROJECTS_PATH"
-    Invoke-GitClone 'PowerShell.ModuleBuilder'
-    pushd "PowerShell.ModuleBuilder\setup"
-    ./Setup.ps1
-    popd
-
-
-    pushd "$Script:PS_MODDEV_PATH"
-
-    Invoke-GitClone 'PowerShell.Module.Core'
-    Invoke-GitClone 'PowerShell.Module.Reddit'
-    Invoke-GitClone 'PowerShell.Module.Github'
-    Invoke-GitClone 'PowerShell.Module.WindowsHost'
-    popd
+    Write-Host -f DarkYellow "`n======================================================"
+    Write-Host -n -f DarkRed "$Title"
+    if($Script:TEST_MODE -eq $False){
+        Write-Host -n -f DarkRed "`n"
+    }else{
+        Write-Host -f Red "  ** TEST MODE"
+    }
+    Write-Host -f DarkYellow "======================================================`n"
 
 }
 
+
+function Check-ValidateBeforeStart {
+
+
+    if(-not(Test-Path -Path $Script:DEV_ROOT))              { Write-MError "NOT EXISTING: $Script:DEVDRIVE" }
+    if(-not(Test-Path -Path $Script:REG_USER_ENV))          { Write-MError "NOT EXISTING: $Script:REG_USER_ENV" }
+    if(-not(Test-Path -Path $Script:REG_GLOBAL_ENV))        { Write-MError "NOT EXISTING: $Script:REG_GLOBAL_ENV" }
+    if(-not(Test-Path -Path $Script:OrganizationHKCUScript)){ Write-MError "NOT EXISTING: $Script:OrganizationHKCUScript" }
+
+    if(-not(Test-Path -Path $Script:WINGIT_SCRIPT_PATH))    { Write-MError "NOT EXISTING: $Script:WINGIT_SCRIPT_PATH" }
+    if(-not(Test-Path -Path $Script:CONFIGURE_SCRIPT_PATH)) { Write-MError "NOT EXISTING: $Script:CONFIGURE_SCRIPT_PATH" }
+
+}
 
 
 function Set-SystemEnvironmentValues {
@@ -188,25 +168,8 @@ function Set-SystemEnvironmentValues {
         Write-MMsg "WhatIf : Registry Import $Script:REG_USER_ENV"
     }
 }
-function Write-Title{
 
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    (
-        [Parameter(Mandatory=$true,Position=0)]    
-        [string]$Title
-    )
 
-    Write-Host -f DarkYellow "`n======================================================"
-    Write-Host -n -f DarkRed "$Title"
-    if($Script:TEST_MODE -eq $False){
-        Write-Host -n -f DarkRed "`n"
-    }else{
-        Write-Host -f Red "  ** TEST MODE"
-    }
-    Write-Host -f DarkYellow "======================================================`n"
-
-}
 
 function Set-WellKnownPaths {
 
@@ -332,6 +295,9 @@ try{
     . "$Script:CONFIGURE_SCRIPT_PATH"
     Write-MOk "Included $Script:CONFIGURE_SCRIPT_PATH"
 
+    . "$Script:WINGIT_SCRIPT_PATH"
+    Write-MOk "Included $Script:WINGET_SCRIPT_PATH"
+
     Register-Assemblies
     Check-ValidateBeforeStart
 
@@ -401,12 +367,70 @@ try{
     }else{
         Write-MOk "Git Installed"
     }
+
+    Set-GitUSerData "guillaumeplante.qc@gmail.com" "gp"
+
+
+    Write-MMsg "PUSHD IN $Script:DEV_ROOT"
+    pushd "$Script:DEV_ROOT"
+
+    Write-Title 'Git Clone BuildAutomation'
+    Invoke-GitClone 'BuildAutomation'
+    Write-Title 'Git Clone DejaInsight'
+    Invoke-GitClone 'DejaInsight'
     
+    Write-MMsg "POPD GO OUT"
+    popd
+    
+    Write-MMsg "PUSHD IN $ENV:TEMP"
+    pushd "$ENV:TEMP"
+    Write-Title 'Git Clone PowerShell.Profile'
+    Invoke-GitClone 'PowerShell.Profile'
+
+    Write-MMsg "PUSHD IN PowerShell.Profile"
+    pushd 'PowerShell.Profile'
+    Write-MMsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
+    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH"
+
+    Write-MMsg "Remove-Item -Path `"$Script:POWERSHELL_PATH\Profile`""
+    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
+    Write-MMsg " Copy-Item `"Profile`" `"$Script:POWERSHELL_PATH\Profile`" -Recurse"
+    Copy-Item "Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse 
+
+    Write-MMsg "PUSHD IN $Script:PS_PROJECTS_PATH"
+    pushd "$Script:PS_PROJECTS_PATH"
 
 
-git config --global user.email "guillaumeplante.qc@gmail.com"
-git config --global user.name "Guillaume Plante"
+    Write-Title 'Git Clone PowerShell.ModuleBuilder'
+    Invoke-GitClone 'PowerShell.ModuleBuilder'
 
+    Write-MMsg "PUSHD IN PowerShell.ModuleBuilder\setup"
+    pushd "PowerShell.ModuleBuilder\setup"
+    ./Setup.ps1
+
+    Write-MMsg "POPD GO OUT"
+    popd
+
+
+    Write-MMsg "PUSHD IN $Script:PS_MODDEV_PATH"
+    pushd "$Script:PS_MODDEV_PATH"
+
+    Write-Title 'Git Clone PowerShell.Module.Core'
+    Invoke-GitClone 'PowerShell.Module.Core'
+
+    Write-Title 'Git Clone PowerShell.Module.Reddit'
+    Invoke-GitClone 'PowerShell.Module.Reddit'
+
+    Write-Title 'Git Clone PowerShell.Module.Github'
+    Invoke-GitClone 'PowerShell.Module.Github'
+
+    Write-Title 'Git Clone PowerShell.Module.WindowsHost'
+    Invoke-GitClone 'PowerShell.Module.WindowsHost'
+
+    Write-MMsg "POPD GO OUT"
+    popd
+
+    Write-MOk "DONE"
 
 }catch{
     Show-ExceptionDetails($_) -ShowStack
