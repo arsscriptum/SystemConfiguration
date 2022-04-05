@@ -93,7 +93,7 @@ $Script:Panel06.width                = 480
 $Script:Panel06.Anchor               = 'top,right,left'
 $Script:Panel06.location             = New-Object System.Drawing.Point(10,400)
 write-smsg "created OtherPanel" -ok
-$Script:Script:Debloat                         = New-Object system.Windows.Forms.Label
+$Script:Debloat                         = New-Object system.Windows.Forms.Label
 $Script:Debloat.text                    = "DEBLOAT OPTIONS"
 $Script:Debloat.AutoSize                = $true
 $Script:Debloat.width                   = 457
