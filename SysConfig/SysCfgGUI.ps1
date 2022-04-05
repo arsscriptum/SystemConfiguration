@@ -253,55 +253,55 @@ $Script:Label06.location                  = New-Object System.Drawing.Point(10,1
 $Script:Label06.Font                      = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label06.ForeColor                 = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:RemoveOnedrive                  = New-Object system.Windows.Forms.Button
-$Script:RemoveOnedrive.FlatStyle        = 'Flat'
-$Script:RemoveOnedrive.text             = "UNINSTALL ONEDRIVE"
-$Script:RemoveOnedrive.width            = 225
-$Script:RemoveOnedrive.height           = 30
-$Script:RemoveOnedrive.Anchor           = 'top,right,left'
-$Script:RemoveOnedrive.location         = New-Object System.Drawing.Point(10,40)
-$Script:RemoveOnedrive.Font             = New-Object System.Drawing.Font('Consolas',9)
-$Script:RemoveOnedrive.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button10                  = New-Object system.Windows.Forms.Button
+$Script:Button10.FlatStyle        = 'Flat'
+$Script:Button10.text             = "UNINSTALL ONEDRIVE"
+$Script:Button10.width            = 225
+$Script:Button10.height           = 30
+$Script:Button10.Anchor           = 'top,right,left'
+$Script:Button10.location         = New-Object System.Drawing.Point(10,40)
+$Script:Button10.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button10.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:UnpinStartMenuTiles             = New-Object system.Windows.Forms.Button
-$Script:UnpinStartMenuTiles.FlatStyle   = 'Flat'
-$Script:UnpinStartMenuTiles.text        = "UNPIN TILES FROM START MENU"
-$Script:UnpinStartMenuTiles.width       = 225
-$Script:UnpinStartMenuTiles.height      = 30
-$Script:UnpinStartMenuTiles.Anchor      = 'top,right,left'
-$Script:UnpinStartMenuTiles.location    = New-Object System.Drawing.Point(245,40)
-$Script:UnpinStartMenuTiles.Font        = New-Object System.Drawing.Font('Consolas',9)
-$Script:UnpinStartMenuTiles.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button12             = New-Object system.Windows.Forms.Button
+$Script:Button12.FlatStyle   = 'Flat'
+$Script:Button12.text        = "UNPIN TILES FROM START MENU"
+$Script:Button12.width       = 225
+$Script:Button12.height      = 30
+$Script:Button12.Anchor      = 'top,right,left'
+$Script:Button12.location    = New-Object System.Drawing.Point(245,40)
+$Script:Button12.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button12.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:DisableTelemetry                = New-Object system.Windows.Forms.Button
-$Script:DisableTelemetry.FlatStyle      = 'Flat'
-$Script:DisableTelemetry.text           = "DISABLE TELEMETRY / TASKS"
-$Script:DisableTelemetry.width          = 225
-$Script:DisableTelemetry.height         = 30
-$Script:DisableTelemetry.Anchor         = 'top,right,left'
-$Script:DisableTelemetry.location       = New-Object System.Drawing.Point(10,80)
-$Script:DisableTelemetry.Font           = New-Object System.Drawing.Font('Consolas',9)
-$Script:DisableTelemetry.ForeColor      = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button13                = New-Object system.Windows.Forms.Button
+$Script:Button13.FlatStyle      = 'Flat'
+$Script:Button13.text           = "DISABLE TELEMETRY / TASKS"
+$Script:Button13.width          = 225
+$Script:Button13.height         = 30
+$Script:Button13.Anchor         = 'top,right,left'
+$Script:Button13.location       = New-Object System.Drawing.Point(10,80)
+$Script:Button13.Font           = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button13.ForeColor      = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:RemoveRegkeys                   = New-Object system.Windows.Forms.Button
-$Script:RemoveRegkeys.FlatStyle         = 'Flat'
-$Script:RemoveRegkeys.text              = "REMOVE BLOATWARE REGKEYS"
-$Script:RemoveRegkeys.width             = 225
-$Script:RemoveRegkeys.height            = 30
-$Script:RemoveRegkeys.Anchor            = 'top,right,left'
-$Script:RemoveRegkeys.location          = New-Object System.Drawing.Point(245,80)
-$Script:RemoveRegkeys.Font              = New-Object System.Drawing.Font('Consolas',9)
-$Script:RemoveRegkeys.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button14                   = New-Object system.Windows.Forms.Button
+$Script:Button14.FlatStyle         = 'Flat'
+$Script:Button14.text              = "REMOVE BLOATWARE REGKEYS"
+$Script:Button14.width             = 225
+$Script:Button14.height            = 30
+$Script:Button14.Anchor            = 'top,right,left'
+$Script:Button14.location          = New-Object System.Drawing.Point(245,80)
+$Script:Button14.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button14.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:InstallNet35                    = New-Object system.Windows.Forms.Button
-$Script:InstallNet35.FlatStyle          = 'Flat'
-$Script:InstallNet35.text               = "INSTALL .NET V3.5"
-$Script:InstallNet35.width              = 460
-$Script:InstallNet35.height             = 30
-$Script:InstallNet35.Anchor             = 'top,right,left'
-$Script:InstallNet35.location           = New-Object System.Drawing.Point(10,120)
-$Script:InstallNet35.Font               = New-Object System.Drawing.Font('Consolas',9)
-$Script:InstallNet35.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button11                    = New-Object system.Windows.Forms.Button
+$Script:Button11.FlatStyle          = 'Flat'
+$Script:Button11.text               = "INSTALL .NET V3.5"
+$Script:Button11.width              = 460
+$Script:Button11.height             = 30
+$Script:Button11.Anchor             = 'top,right,left'
+$Script:Button11.location           = New-Object System.Drawing.Point(10,120)
+$Script:Button11.Font               = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button11.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 $Script:Form.controls.AddRange(@($Script:Panel02,$Label01Panel,$PanelObj04,$PanelObj05,$PanelObj06,$PanelObj07))
 
 $Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
@@ -310,7 +310,7 @@ $Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
 $Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
 $Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
 $Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
-$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:RemoveOnedrive,$Script:InstallNet35,$Script:UnpinStartMenuTiles,$Script:DisableTelemetry,$RemoveRegkeys))
+$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
 
 
 #region gui events {
@@ -334,8 +334,6 @@ $Button.Location = New-Object System.Drawing.Size(35,35)
 $Button.Size = New-Object System.Drawing.Size(120,23)
 $Button.Text = "Show Dialog Box"
 $Button.Add_Click($Button_Click)
-
-[void]$Script:Form.Controls.Add($Script:Button10)
 
 
 [void]$Script:Form.showdialog()
