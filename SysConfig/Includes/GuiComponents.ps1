@@ -1,5 +1,5 @@
 
-
+<#
 $Script:Form                            = New-Object system.Windows.Forms.Form
 $Script:Form.ClientSize                 = New-Object System.Drawing.Point(500,570)
 $Script:Form.StartPosition              = 'CenterScreen'
@@ -34,19 +34,19 @@ $Script:EdgePanel.height                = 120
 $Script:EdgePanel.width                 = 154
 $Script:EdgePanel.Anchor                = 'top,right,left'
 $Script:EdgePanel.location              = New-Object System.Drawing.Point(173,270)
-
+write-smsg "created EdgePanel" -ok
 $Script:DarkThemePanel                  = New-Object system.Windows.Forms.Panel
 $Script:DarkThemePanel.height           = 120
 $Script:DarkThemePanel.width            = 153
 $Script:DarkThemePanel.Anchor           = 'top,right,left'
 $Script:DarkThemePanel.location         = New-Object System.Drawing.Point(337,270)
-
+write-smsg "created DarkThemePanel" -ok
 $Script:OtherPanel                      = New-Object system.Windows.Forms.Panel
 $Script:OtherPanel.height               = 160
 $Script:OtherPanel.width                = 480
 $Script:OtherPanel.Anchor               = 'top,right,left'
 $Script:OtherPanel.location             = New-Object System.Drawing.Point(10,400)
-
+write-smsg "created OtherPanel" -ok
 $Script:Script:Debloat                         = New-Object system.Windows.Forms.Label
 $Script:Debloat.text                    = "DEBLOAT OPTIONS"
 $Script:Debloat.AutoSize                = $true
@@ -256,3 +256,5 @@ $Script:InstallNet35.Anchor             = 'top,right,left'
 $Script:InstallNet35.location           = New-Object System.Drawing.Point(10,120)
 $Script:InstallNet35.Font               = New-Object System.Drawing.Font('Consolas',9)
 $Script:InstallNet35.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+
+#>
