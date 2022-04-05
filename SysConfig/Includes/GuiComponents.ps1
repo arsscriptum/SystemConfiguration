@@ -9,7 +9,7 @@ $Script:Form.MaximizeBox                = $false
 $Script:Form.ShowIcon                   = $false
 $Script:Form.text                       = "System Configurator"
 $Script:Form.TopMost                    = $false
-$Script:Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#252525")
+$Script:Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#202020")
 
 $Script:Panel01                    = New-Object system.Windows.Forms.Panel
 $Script:Panel01.height             = 160
@@ -54,26 +54,26 @@ $Script:Label01.width                   = 457
 $Script:Label01.height                  = 142
 $Script:Label01.Anchor                  = 'top,right,left'
 $Script:Label01.location                = New-Object System.Drawing.Point(10,9)
-$Script:Label01.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label01.Font                    = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label01.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button01             = New-Object system.Windows.Forms.Button
 $Script:Button01.FlatStyle   = 'Flat'
-$Script:Button01.text        = "Button01"
+$Script:Button01.text        = "Set Well Known Paths"
 $Script:Button01.width       = 260
 $Script:Button01.height      = 30
 $Script:Button01.Anchor      = 'top,right,left'
 $Script:Button01.location    = New-Object System.Drawing.Point(210,40)
-$Script:Button01.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button01.Font        = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button01.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:ListBox01 = New-Object System.Windows.Forms.ListBox
 $Script:ListBox01.FlatStyle         = 'Flat'
 $Script:ListBox01.width             = 133
-$Script:ListBox01.height            = 30
+$Script:ListBox01.height            = 40
 $Script:ListBox01.Anchor            = 'top,right,left'
 $Script:ListBox01.location          = New-Object System.Drawing.Point(10,40)
-$Script:ListBox01.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:ListBox01.Font              = New-Object System.Drawing.Font('Consolas',7)
 $Script:ListBox01.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 
@@ -85,7 +85,7 @@ $Script:Button02.width        = 460
 $Script:Button02.height       = 30
 $Script:Button02.Anchor       = 'top,right,left'
 $Script:Button02.location     = New-Object System.Drawing.Point(10,80)
-$Script:Button02.Font         = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button02.Font         = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button02.ForeColor    = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button03                 = New-Object system.Windows.Forms.Button
@@ -95,7 +95,7 @@ $Script:Button03.width           = 460
 $Script:Button03.height          = 30
 $Script:Button03.Anchor          = 'top,right,left'
 $Script:Button03.location        = New-Object System.Drawing.Point(10,120)
-$Script:Button03.Font            = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button03.Font            = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button03.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label02                        = New-Object system.Windows.Forms.Label
@@ -105,7 +105,7 @@ $Script:Label02.width                  = 457
 $Script:Label02.height                 = 142
 $Script:Label02.Anchor                 = 'top,right,left'
 $Script:Label02.location               = New-Object System.Drawing.Point(10,10)
-$Script:Label02.Font                   = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label02.Font                   = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label02.ForeColor              = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button04                    = New-Object system.Windows.Forms.Button
@@ -115,7 +115,7 @@ $Script:Button04.width              = 460
 $Script:Button04.height             = 30
 $Script:Button04.Anchor             = 'top,right,left'
 $Script:Button04.location           = New-Object System.Drawing.Point(10,40)
-$Script:Button04.Font               = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button04.Font               = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button04.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label03                         = New-Object system.Windows.Forms.Label
@@ -125,7 +125,7 @@ $Script:Label03.width                   = 457
 $Script:Label03.height                  = 142
 $Script:Label03.Anchor                  = 'top,right,left'
 $Script:Label03.location                = New-Object System.Drawing.Point(10,10)
-$Script:Label03.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label03.Font                    = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label03.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button05                   = New-Object system.Windows.Forms.Button
@@ -135,7 +135,7 @@ $Script:Button05.width             = 133
 $Script:Button05.height            = 30
 $Script:Button05.Anchor            = 'top,right,left'
 $Script:Button05.location          = New-Object System.Drawing.Point(10,40)
-$Script:Button05.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button05.Font              = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button05.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button06                  = New-Object system.Windows.Forms.Button
@@ -145,7 +145,7 @@ $Script:Button06.width            = 133
 $Script:Button06.height           = 30
 $Script:Button06.Anchor           = 'top,right,left'
 $Script:Button06.location         = New-Object System.Drawing.Point(10,80)
-$Script:Button06.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button06.Font             = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button06.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label99                            = New-Object system.Windows.Forms.Label
@@ -155,7 +155,7 @@ $Script:Label99.width                      = 457
 $Script:Label99.height                     = 142
 $Script:Label99.Anchor                     = 'top,right,left'
 $Script:Label99.location                   = New-Object System.Drawing.Point(10,10)
-$Script:Label99.Font                       = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label99.Font                       = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label99.ForeColor                  = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label04           = New-Object system.Windows.Forms.Button
@@ -165,7 +165,7 @@ $Script:Label04.width     = 134
 $Script:Label04.height    = 30
 $Script:Label04.Anchor    = 'top,right,left'
 $Script:Label04.location  = New-Object System.Drawing.Point(10,40)
-$Script:Label04.Font      = New-Object System.Drawing.Font('Consolas',9)
+$Script:Label04.Font      = New-Object System.Drawing.Font('Consolas',7)
 $Script:Label04.ForeColor  = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button07             = New-Object system.Windows.Forms.Button
@@ -175,7 +175,7 @@ $Script:Button07.width       = 134
 $Script:Button07.height      = 30
 $Script:Button07.Anchor      = 'top,right,left'
 $Script:Button07.location    = New-Object System.Drawing.Point(10,80)
-$Script:Button07.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button07.Font        = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button07.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label05                           = New-Object system.Windows.Forms.Label
@@ -185,7 +185,7 @@ $Script:Label05.width                     = 457
 $Script:Label05.height                    = 142
 $Script:Label05.Anchor                    = 'top,right,left'
 $Script:Label05.location                  = New-Object System.Drawing.Point(10,10)
-$Script:Label05.Font                      = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label05.Font                      = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label05.ForeColor                 = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button09                  = New-Object system.Windows.Forms.Button
@@ -195,7 +195,7 @@ $Script:Button09.width            = 133
 $Script:Button09.height           = 30
 $Script:Button09.Anchor           = 'top,right,left'
 $Script:Button09.location         = New-Object System.Drawing.Point(10,40)
-$Script:Button09.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button09.Font             = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button09.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button08                 = New-Object system.Windows.Forms.Button
@@ -205,7 +205,7 @@ $Script:Button08.width           = 133
 $Script:Button08.height          = 30
 $Script:Button08.Anchor          = 'top,right,left'
 $Script:Button08.location        = New-Object System.Drawing.Point(10,80)
-$Script:Button08.Font            = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button08.Font            = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button08.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label06                           = New-Object system.Windows.Forms.Label
@@ -215,7 +215,7 @@ $Script:Label06.width                     = 457
 $Script:Label06.height                    = 142
 $Script:Label06.Anchor                    = 'top,right,left'
 $Script:Label06.location                  = New-Object System.Drawing.Point(10,10)
-$Script:Label06.Font                      = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label06.Font                      = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label06.ForeColor                 = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button10                  = New-Object system.Windows.Forms.Button
@@ -225,7 +225,7 @@ $Script:Button10.width            = 225
 $Script:Button10.height           = 30
 $Script:Button10.Anchor           = 'top,right,left'
 $Script:Button10.location         = New-Object System.Drawing.Point(10,40)
-$Script:Button10.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button10.Font             = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button10.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button12             = New-Object system.Windows.Forms.Button
@@ -235,7 +235,7 @@ $Script:Button12.width       = 225
 $Script:Button12.height      = 30
 $Script:Button12.Anchor      = 'top,right,left'
 $Script:Button12.location    = New-Object System.Drawing.Point(245,40)
-$Script:Button12.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button12.Font        = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button12.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button13                = New-Object system.Windows.Forms.Button
@@ -245,7 +245,7 @@ $Script:Button13.width          = 225
 $Script:Button13.height         = 30
 $Script:Button13.Anchor         = 'top,right,left'
 $Script:Button13.location       = New-Object System.Drawing.Point(10,80)
-$Script:Button13.Font           = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button13.Font           = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button13.ForeColor      = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button14                   = New-Object system.Windows.Forms.Button
@@ -255,7 +255,7 @@ $Script:Button14.width             = 225
 $Script:Button14.height            = 30
 $Script:Button14.Anchor            = 'top,right,left'
 $Script:Button14.location          = New-Object System.Drawing.Point(245,80)
-$Script:Button14.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button14.Font              = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button14.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Button11                    = New-Object system.Windows.Forms.Button
@@ -265,5 +265,5 @@ $Script:Button11.width              = 460
 $Script:Button11.height             = 30
 $Script:Button11.Anchor             = 'top,right,left'
 $Script:Button11.location           = New-Object System.Drawing.Point(10,120)
-$Script:Button11.Font               = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button11.Font               = New-Object System.Drawing.Font('Consolas',7)
 $Script:Button11.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")

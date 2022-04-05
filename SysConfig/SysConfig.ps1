@@ -285,7 +285,7 @@ function Set-RegistryOrganizationHKCU {
 }
 
 
-
+<#
 try{
     if (-not(Test-Path "$Script:CONFIGURE_SCRIPT_PATH")){
         throw "Missing Configure Script at $Script:CONFIGURE_SCRIPT_PATH"
@@ -437,3 +437,4 @@ try{
     Show-ExceptionDetails($_) -ShowStack
 }
 
+#>
