@@ -123,15 +123,15 @@ $Script:Button02.location     = New-Object System.Drawing.Point(10,80)
 $Script:Button02.Font         = New-Object System.Drawing.Font('Consolas',9)
 $Script:Button02.ForeColor    = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:RemoveBlacklistedBloatware                 = New-Object system.Windows.Forms.Button
-$Script:RemoveBlacklistedBloatware.FlatStyle       = 'Flat'
-$Script:RemoveBlacklistedBloatware.text            = "REMOVE BLOATWARE WITH CUSTOM BLOCKLIST"
-$Script:RemoveBlacklistedBloatware.width           = 460
-$Script:RemoveBlacklistedBloatware.height          = 30
-$Script:RemoveBlacklistedBloatware.Anchor          = 'top,right,left'
-$Script:RemoveBlacklistedBloatware.location        = New-Object System.Drawing.Point(10,120)
-$Script:RemoveBlacklistedBloatware.Font            = New-Object System.Drawing.Font('Consolas',9)
-$Script:RemoveBlacklistedBloatware.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button03                 = New-Object system.Windows.Forms.Button
+$Script:Button03.FlatStyle       = 'Flat'
+$Script:Button03.text            = "REMOVE BLOATWARE WITH CUSTOM BLOCKLIST"
+$Script:Button03.width           = 460
+$Script:Button03.height          = 30
+$Script:Button03.Anchor          = 'top,right,left'
+$Script:Button03.location        = New-Object System.Drawing.Point(10,120)
+$Script:Button03.Font            = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button03.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label02                        = New-Object system.Windows.Forms.Label
 $Script:Label02.text                   = "REGISTRY CHANGES"
@@ -143,15 +143,15 @@ $Script:Label02.location               = New-Object System.Drawing.Point(10,10)
 $Script:Label02.Font                   = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label02.ForeColor              = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:RevertChanges                    = New-Object system.Windows.Forms.Button
-$Script:RevertChanges.FlatStyle          = 'Flat'
-$Script:RevertChanges.text               = "REVERT REGISTRY CHANGES"
-$Script:RevertChanges.width              = 460
-$Script:RevertChanges.height             = 30
-$Script:RevertChanges.Anchor             = 'top,right,left'
-$Script:RevertChanges.location           = New-Object System.Drawing.Point(10,40)
-$Script:RevertChanges.Font               = New-Object System.Drawing.Font('Consolas',9)
-$Script:RevertChanges.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button04                    = New-Object system.Windows.Forms.Button
+$Script:Button04.FlatStyle          = 'Flat'
+$Script:Button04.text               = "REVERT REGISTRY CHANGES"
+$Script:Button04.width              = 460
+$Script:Button04.height             = 30
+$Script:Button04.Anchor             = 'top,right,left'
+$Script:Button04.location           = New-Object System.Drawing.Point(10,40)
+$Script:Button04.Font               = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button04.ForeColor          = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label03                         = New-Object system.Windows.Forms.Label
 $Script:Label03.text                    = "CORTANA"
@@ -163,25 +163,25 @@ $Script:Label03.location                = New-Object System.Drawing.Point(10,10)
 $Script:Label03.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label03.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:EnableCortana                   = New-Object system.Windows.Forms.Button
-$Script:EnableCortana.FlatStyle         = 'Flat'
-$Script:EnableCortana.text              = "ENABLE"
-$Script:EnableCortana.width             = 133
-$Script:EnableCortana.height            = 30
-$Script:EnableCortana.Anchor            = 'top,right,left'
-$Script:EnableCortana.location          = New-Object System.Drawing.Point(10,40)
-$Script:EnableCortana.Font              = New-Object System.Drawing.Font('Consolas',9)
-$Script:EnableCortana.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button05                   = New-Object system.Windows.Forms.Button
+$Script:Button05.FlatStyle         = 'Flat'
+$Script:Button05.text              = "ENABLE"
+$Script:Button05.width             = 133
+$Script:Button05.height            = 30
+$Script:Button05.Anchor            = 'top,right,left'
+$Script:Button05.location          = New-Object System.Drawing.Point(10,40)
+$Script:Button05.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button05.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:DisableCortana                  = New-Object system.Windows.Forms.Button
-$Script:DisableCortana.FlatStyle        = 'Flat'
-$Script:DisableCortana.text             = "DISABLE"
-$Script:DisableCortana.width            = 133
-$Script:DisableCortana.height           = 30
-$Script:DisableCortana.Anchor           = 'top,right,left'
-$Script:DisableCortana.location         = New-Object System.Drawing.Point(10,80)
-$Script:DisableCortana.Font             = New-Object System.Drawing.Font('Consolas',9)
-$Script:DisableCortana.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button06                  = New-Object system.Windows.Forms.Button
+$Script:Button06.FlatStyle        = 'Flat'
+$Script:Button06.text             = "DISABLE"
+$Script:Button06.width            = 133
+$Script:Button06.height           = 30
+$Script:Button06.Anchor           = 'top,right,left'
+$Script:Button06.location         = New-Object System.Drawing.Point(10,80)
+$Script:Button06.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button06.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Edge                            = New-Object system.Windows.Forms.Label
 $Script:Edge.text                       = "EDGE PDF"
@@ -203,15 +203,15 @@ $Script:Label04.location  = New-Object System.Drawing.Point(10,40)
 $Script:Label04.Font      = New-Object System.Drawing.Font('Consolas',9)
 $Script:Label04.ForeColor  = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:DisableEdgePDFTakeover             = New-Object system.Windows.Forms.Button
-$Script:DisableEdgePDFTakeover.FlatStyle   = 'Flat'
-$Script:DisableEdgePDFTakeover.text        = "DISABLE"
-$Script:DisableEdgePDFTakeover.width       = 134
-$Script:DisableEdgePDFTakeover.height      = 30
-$Script:DisableEdgePDFTakeover.Anchor      = 'top,right,left'
-$Script:DisableEdgePDFTakeover.location    = New-Object System.Drawing.Point(10,80)
-$Script:DisableEdgePDFTakeover.Font        = New-Object System.Drawing.Font('Consolas',9)
-$Script:DisableEdgePDFTakeover.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button07             = New-Object system.Windows.Forms.Button
+$Script:Button07.FlatStyle   = 'Flat'
+$Script:Button07.text        = "DISABLE"
+$Script:Button07.width       = 134
+$Script:Button07.height      = 30
+$Script:Button07.Anchor      = 'top,right,left'
+$Script:Button07.location    = New-Object System.Drawing.Point(10,80)
+$Script:Button07.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button07.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label05                           = New-Object system.Windows.Forms.Label
 $Script:Label05.text                      = "DARK THEME"
@@ -223,25 +223,25 @@ $Script:Label05.location                  = New-Object System.Drawing.Point(10,1
 $Script:Label05.Font                      = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label05.ForeColor                 = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:EnableDarkMode                  = New-Object system.Windows.Forms.Button
-$Script:EnableDarkMode.FlatStyle        = 'Flat'
-$Script:EnableDarkMode.text             = "ENABLE"
-$Script:EnableDarkMode.width            = 133
-$Script:EnableDarkMode.height           = 30
-$Script:EnableDarkMode.Anchor           = 'top,right,left'
-$Script:EnableDarkMode.location         = New-Object System.Drawing.Point(10,40)
-$Script:EnableDarkMode.Font             = New-Object System.Drawing.Font('Consolas',9)
-$Script:EnableDarkMode.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button09                  = New-Object system.Windows.Forms.Button
+$Script:Button09.FlatStyle        = 'Flat'
+$Script:Button09.text             = "ENABLE"
+$Script:Button09.width            = 133
+$Script:Button09.height           = 30
+$Script:Button09.Anchor           = 'top,right,left'
+$Script:Button09.location         = New-Object System.Drawing.Point(10,40)
+$Script:Button09.Font             = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button09.ForeColor        = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:DisableDarkMode                 = New-Object system.Windows.Forms.Button
-$Script:DisableDarkMode.FlatStyle       = 'Flat'
-$Script:DisableDarkMode.text            = "DISABLE"
-$Script:DisableDarkMode.width           = 133
-$Script:DisableDarkMode.height          = 30
-$Script:DisableDarkMode.Anchor          = 'top,right,left'
-$Script:DisableDarkMode.location        = New-Object System.Drawing.Point(10,80)
-$Script:DisableDarkMode.Font            = New-Object System.Drawing.Font('Consolas',9)
-$Script:DisableDarkMode.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button08                 = New-Object system.Windows.Forms.Button
+$Script:Button08.FlatStyle       = 'Flat'
+$Script:Button08.text            = "DISABLE"
+$Script:Button08.width           = 133
+$Script:Button08.height          = 30
+$Script:Button08.Anchor          = 'top,right,left'
+$Script:Button08.location        = New-Object System.Drawing.Point(10,80)
+$Script:Button08.Font            = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button08.ForeColor       = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:Label06                           = New-Object system.Windows.Forms.Label
 $Script:Label06.text                      = "OTHER CHANGES & FIXES"
@@ -305,11 +305,11 @@ $Script:InstallNet35.ForeColor          = [System.Drawing.ColorTranslator]::From
 $Script:Form.controls.AddRange(@($Script:Panel02,$Label01Panel,$PanelObj04,$PanelObj05,$PanelObj06,$PanelObj07))
 
 $Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
-$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:Button02,$RemoveBlacklistedBloatware))
-$Script:Panel02.controls.AddRange(@($Script:Label02,$Script:RevertChanges))
-$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:EnableCortana,$Script:DisableCortana))
-$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:DisableEdgePDFTakeover))
-$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:DisableDarkMode,$Script:EnableDarkMode))
+$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:Button02,$Button03))
+$Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
+$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
+$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
+$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
 $Script:Panel06.controls.AddRange(@($Script:Label06,$Script:RemoveOnedrive,$Script:InstallNet35,$Script:UnpinStartMenuTiles,$Script:DisableTelemetry,$RemoveRegkeys))
 
 
