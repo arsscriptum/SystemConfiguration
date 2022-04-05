@@ -67,7 +67,9 @@ param
 # ============================================================================================================
 # SCRIPT VARIABLES
 # ============================================================================================================
+$Script:GIT_WINDOWS_64_URL      = 'https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe'
 
+$Script:DATA_DRIVE             = "x:\"
 $Script:TEST_MODE              = "$false"
 $Script:QUIET_MODE             = "$Quiet"
 $Script:DEV_ROOT               = "$ENV:TEMP"
@@ -78,16 +80,15 @@ $Script:REG_USER_ENV           = "$SYSCONFIG_SCRIPTS\UserEnv.reg"
 $Script:REG_GLOBAL_ENV         = "$SYSCONFIG_SCRIPTS\GlobalEnv.reg"
 $Script:OrganizationHKCUScript = "$SYSCONFIG_SCRIPTS\OrganizationHKCU.reg"
 
-$Script:GIT_WINDOWS_64_URL      = 'https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe'
-$Script:PROGRAMS_PATH           = 'c:\Programs'
-$Script:WIN_GIT_INSTALL_PATH    = Join-Path "$Script:PROGRAMS_PATH" "Git"
-$Script:MYDOCUMENTS_PATH        = 'c:\DOCUMENTS'
-$Script:MYPICTURES_PATH         = 'c:\Data\Pictures'
-$Script:MYVIDEOS_PATH           = 'c:\Data\Videos'
-$Script:SCREENSHOTS_PATH        = 'c:\Data\Pictures\Screenshots'
-$Script:DOWNLOAD_PATH           = 'c:\Data\Downloads' 
-$Script:DESKTOP_PATH            = 'c:\Data\Windows\Desktop' 
+$Script:PROGRAMS_PATH           = Join-Path "$Script:DATA_DRIVE" "Programs"
+$Script:MYDOCUMENTS_PATH        = Join-Path "$Script:DATA_DRIVE" "DOCUMENTS"
+$Script:MYPICTURES_PATH         = Join-Path "$Script:DATA_DRIVE" "Data\Pictures"
+$Script:MYVIDEOS_PATH           = Join-Path "$Script:DATA_DRIVE" "Data\Videos"
+$Script:SCREENSHOTS_PATH        = Join-Path "$Script:DATA_DRIVE" "Data\Pictures\Screenshots"
+$Script:DOWNLOAD_PATH           = Join-Path "$Script:DATA_DRIVE" "Data\Downloads"
+$Script:DESKTOP_PATH            = Join-Path "$Script:DATA_DRIVE" "Data\Windows\Desktop"
 
+$Script:WIN_GIT_INSTALL_PATH    = Join-Path "$Script:PROGRAMS_PATH" "Git"
 $Script:POWERSHELL_PATH         = Join-Path "$Script:MYDOCUMENTS_PATH" "PowerShell"
 $Script:PS_MODULES_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Modules"
 $Script:PS_MODDEV_PATH          = Join-Path "$Script:POWERSHELL_PATH" "Module-Development"

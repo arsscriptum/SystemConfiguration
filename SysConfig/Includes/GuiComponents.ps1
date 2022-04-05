@@ -60,12 +60,23 @@ $Script:Label01.ForeColor               = [System.Drawing.ColorTranslator]::From
 $Script:Button01             = New-Object system.Windows.Forms.Button
 $Script:Button01.FlatStyle   = 'Flat'
 $Script:Button01.text        = "Button01"
-$Script:Button01.width       = 460
+$Script:Button01.width       = 260
 $Script:Button01.height      = 30
 $Script:Button01.Anchor      = 'top,right,left'
-$Script:Button01.location    = New-Object System.Drawing.Point(10,40)
+$Script:Button01.location    = New-Object System.Drawing.Point(210,40)
 $Script:Button01.Font        = New-Object System.Drawing.Font('Consolas',9)
 $Script:Button01.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+
+$Script:ListBox01 = New-Object System.Windows.Forms.ListBox
+$Script:ListBox01.FlatStyle         = 'Flat'
+$Script:ListBox01.width             = 133
+$Script:ListBox01.height            = 30
+$Script:ListBox01.Anchor            = 'top,right,left'
+$Script:ListBox01.location          = New-Object System.Drawing.Point(10,40)
+$Script:ListBox01.Font              = New-Object System.Drawing.Font('Consolas',9)
+$Script:ListBox01.ForeColor         = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+
+
 
 $Script:Button02              = New-Object system.Windows.Forms.Button
 $Script:Button02.FlatStyle    = 'Flat'
