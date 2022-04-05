@@ -103,15 +103,15 @@ $Script:Label01.location                = New-Object System.Drawing.Point(10,9)
 $Script:Label01.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:Label01.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
-$Script:CustomizeBlacklist             = New-Object system.Windows.Forms.Button
-$Script:CustomizeBlacklist.FlatStyle   = 'Flat'
-$Script:CustomizeBlacklist.text        = "CUSTOMISE BLOCKLIST"
-$Script:CustomizeBlacklist.width       = 460
-$Script:CustomizeBlacklist.height      = 30
-$Script:CustomizeBlacklist.Anchor      = 'top,right,left'
-$Script:CustomizeBlacklist.location    = New-Object System.Drawing.Point(10,40)
-$Script:CustomizeBlacklist.Font        = New-Object System.Drawing.Font('Consolas',9)
-$Script:CustomizeBlacklist.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Button01             = New-Object system.Windows.Forms.Button
+$Script:Button01.FlatStyle   = 'Flat'
+$Script:Button01.text        = "CUSTOMISE BLOCKLIST"
+$Script:Button01.width       = 460
+$Script:Button01.height      = 30
+$Script:Button01.Anchor      = 'top,right,left'
+$Script:Button01.location    = New-Object System.Drawing.Point(10,40)
+$Script:Button01.Font        = New-Object System.Drawing.Font('Consolas',9)
+$Script:Button01.ForeColor   = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:RemoveAllBloatware              = New-Object system.Windows.Forms.Button
 $Script:RemoveAllBloatware.FlatStyle    = 'Flat'
@@ -305,7 +305,7 @@ $Script:InstallNet35.ForeColor          = [System.Drawing.ColorTranslator]::From
 $Script:Form.controls.AddRange(@($Script:Panel02,$Label01Panel,$PanelObj04,$PanelObj05,$PanelObj06,$PanelObj07))
 
 $Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
-$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:CustomizeBlacklist,$Script:RemoveAllBloatware,$RemoveBlacklistedBloatware))
+$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:RemoveAllBloatware,$RemoveBlacklistedBloatware))
 $Script:Panel02.controls.AddRange(@($Script:Label02,$Script:RevertChanges))
 $Script:Panel03.controls.AddRange(@($Script:Label03,$Script:EnableCortana,$Script:DisableCortana))
 $Script:Panel04.controls.AddRange(@($Script:Label04,$Script:DisableEdgePDFTakeover))
