@@ -3,7 +3,8 @@
 [CmdletBinding(SupportsShouldProcess)] 
     param(
         [switch]$TestMode,
-        [switch]$Quiet
+        [switch]$Quiet,
+        [switch]$Admin
     )
 
 
@@ -39,6 +40,16 @@ $Script:PS_PROFILE_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Profile"
 $Script:PS_PROJECTS_PATH        = Join-Path "$Script:POWERSHELL_PATH" "Projects"
 
 $Script:PwshExe                 = (Get-Command 'pwsh.exe').Source
+
+if ($PSBoundParameters.ContainsKey('Admin')) {
+    If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
+        Write-Host '[Admin] ' -f DarkRed -NoNewLine
+        Write-Host "Restart in Admin mode" -f Yellow          
+        Restart-WithAdminPriv
+    }
+
+}
+
 
 if (-not $env:TEMP) {
     $env:TEMP = Join-Path $env:SystemDrive -ChildPath 'temp'
@@ -102,211 +113,10 @@ function Write-Title{
 
 
 # ============================================================================================================
-# SCRIPT FUNCTIONS
-# ============================================================================================================
-
-
-function Set-PowerShellPaths {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
-
-    Write-Title "SET POWERSHELL HOME, MODULES, MODULE DEVELOPMENT PATH"
-
-    write-smsg "PowerShell Home:   $Script:POWERSHELL_PATH"
-    write-smsg "Modules:           $Script:PS_MODULES_PATH"
-    write-smsg "Modules Dev:       $Script:PS_MODDEV_PATH"
-    write-smsg "Projects:          $Script:PS_PROJECTS_PATH"
-    write-smsg "Profile:           $Script:PS_PROFILE_PATH"
-
-    New-Item -Path "$Script:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:POWERSHELL_PATH" ; 
-    New-Item -Path "$Script:PS_MODULES_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_MODULES_PATH" ; 
-    New-Item -Path "$Script:PS_MODDEV_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_MODDEV_PATH" ; 
-    New-Item -Path "$Script:PS_PROJECTS_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROJECTS_PATH" ; 
-    New-Item -Path "$Script:PS_PROFILE_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROFILE_PATH" ; 
-}
-
-
-function Set-RegistryOrganizationHKCU {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
-
-    #===============================================================================
-    # OrganizationHKCU
-    #===============================================================================
-    if( ($ENV:OrganizationHKCU -eq $null) -Or ($ENV:OrganizationHKCU -eq '') )
-    {
-        Write-Host "===============================================================================" -f DarkRed    
-        Write-Host "A required environment variable needs to be setup (user scope)     `t" -NoNewLine -f DarkYellow ; Write-Host "$Script:OrganizationHKCU" -f Gray 
-        $OrgIdentifier = "_gp"
-        $OrganizationHKCU = "HKCU:\Software\" + "$OrgIdentifier"
-
-        [Environment]::SetEnvironmentVariable('OrganizationHKCU',$OrganizationHKCU,"User")
-
-        Write-Host "Setting OrganizationHKCU --> $OrganizationHKCU [User]"  -ForegroundColor Yellow
-        $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE
-
-        $Cmd = Get-Command "RefreshEnv.cmd"
-        if($Cmd){
-            $RefreshEnv = $Cmd.Source
-            &"$RefreshEnv"
-        }
-
-        $ENV:OrganizationHKCU = "$OrganizationHKCU"
-
-    }
-}
-
-
-function Check-ValidateBeforeStart {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
-    if(-not(Test-Path -Path $Script:DEV_ROOT))              { write-serr "NOT EXISTING: $Script:DEVDRIVE" ; return $false;}
-    if(-not(Test-Path -Path $Script:REG_USER_ENV))          { write-serr "NOT EXISTING: $Script:REG_USER_ENV"; return $false; }
-    if(-not(Test-Path -Path $Script:REG_GLOBAL_ENV))        { write-serr "NOT EXISTING: $Script:REG_GLOBAL_ENV" ; return $false;}
-    if(-not(Test-Path -Path $Script:OrganizationHKCUScript)){ write-serr "NOT EXISTING: $Script:OrganizationHKCUScript" ; return $false;}
-
-    if(-not(Test-Path -Path $Script:WINGIT_SCRIPT_PATH))    { write-serr "NOT EXISTING: $Script:WINGIT_SCRIPT_PATH" ; return $false;}
-    if(-not(Test-Path -Path $Script:CONFIGURE_SCRIPT_PATH)) { write-serr "NOT EXISTING: $Script:CONFIGURE_SCRIPT_PATH" ; return $false;}
-
-    return $true;
-
-}
-
-
-function Set-SystemEnvironmentValues {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
-
-    $RegExe = (get-command 'reg.exe').Source
-
-    if($Script:TEST_MODE -eq $False){
-        &"$RegExe" "import" "$Script:REG_GLOBAL_ENV"
-        Write-MOk "Registry Import $Script:REG_GLOBAL_ENV"
-        
-        &"$RegExe" "import" "$Script:REG_USER_ENV"
-        Write-MOk "Registry Import $Script:REG_USER_ENV"
-    }else{
-        Write-MMsg "WhatIf : Registry Import $Script:REG_GLOBAL_ENV"
-        Write-MMsg "WhatIf : Registry Import $Script:REG_USER_ENV"
-    }
-}
-
-function Set-WellKnownPaths {
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-      ()
-    Write-Title "WELL KNOWN PATHS (DOCUMENTS, PICTURES, ETC)" 
-
-    write-smsg "Desktop:         $Script:DESKTOP_PATH"
-    write-smsg "Pictures:        $Script:MYPICTURES_PATH"
-    write-smsg "Screenshots:     $Script:SCREENSHOTS_PATH"
-    write-smsg "Download:        $Script:DOWNLOAD_PATH"
-    write-smsg "Documents:       $Script:MYDOCUMENTS_PATH"
-    write-smsg "Videos:          $Script:MYVIDEOS_PATH"
-
- 
-        New-Item -Path "$Script:DESKTOP_PATH" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE | Out-Null
-        New-Item -Path "$Script:MYPICTURES_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE | Out-Null
-        New-Item -Path "$Script:SCREENSHOTS_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE | Out-Null
-        New-Item -Path "$Script:DOWNLOAD_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE | Out-Null
-        New-Item -Path "$Script:MYDOCUMENTS_PATH" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE  | Out-Null
-        New-Item -Path "$Script:MYVIDEOS_PATH" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE  | Out-Null
-        New-Item -Path "$Script:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE  | Out-Null
-
-        $RegPathShellFolders = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
-        
-        New-ItemProperty "$RegPathShellFolders" Personal -Value "$Script:MYDOCUMENTS_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" Desktop -Value "$Script:DESKTOP_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" 'My Pictures' -Value "$Script:MYPICTURES_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" 'My Video' -Value "$Script:MYVIDEOS_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-         
-        $RegPathShellFolders = 'HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders'
-        
-        New-ItemProperty "$RegPathShellFolders" Personal -Value "$Script:MYDOCUMENTS_PATH" -Type ExpandString -Force  -WhatIf:$Script:TEST_MODE | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" Desktop -Value "$Script:DESKTOP_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" 'My Pictures' -Value "$Script:MYPICTURES_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
-        Set-ItemProperty "$RegPathShellFolders" 'My Video' -Value "$Script:MYVIDEOS_PATH" -Type ExpandString -Force  -WhatIf:$Script:TEST_MODE | Out-Null
-
-    
-}
-# ============================================================================================================
 # SCRIPT Dependencies
 # ============================================================================================================
 
-
-function Import-PreCompiled{
-    $PcsPath = "$PSScriptRoot\pcs.ps1"
-    If( -not (Test-Path $PcsPath) ) {
-        write-serr "Missing precompiled script file ${PcsPath}" -Fatal
-    }
-    . "$PcsPath"
-    write-smsg "included dependency: $PcsPath" -ok
-   
-}
-
-function Import-Dependencies{
-    $DependenciesPath = "$PSScriptRoot\Includes"
-    If( -not (Test-Path $DependenciesPath) ) {
-        write-serr "Missing Dependencies Path ${DependenciesPath}" -Fatal
-    }
-    $DepList = (Get-ChildItem -Path $DependenciesPath -File -Filter '*.ps1').Fullname
-    foreach($dep in $DepList){
-        . "$dep"
-        write-smsg "included dependency: $dep" -ok
-    }
-}
-
-$ScriptFullname = & { $myInvocation.ScriptName }
-
-if($Script:UsePreCompiledDependencies){
-    Import-PreCompiled    
-}else{
-    Import-Dependencies
-}
-
-
-[void] $Script:ListBox01.Items.Add('c:')
-[void] $Script:ListBox01.Items.Add('x:')
-$Script:ListBox01.SelectedIndex = 0
-
-$Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
-$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:Button02,$Button03))
-$Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
-$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
-$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
-$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
-$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
-
-
-#region gui events {
-$Script:Button01.Add_Click( { 
-
-    $Script:DATA_DRIVE  = $Script:ListBox01.SelectedItem
-    write-smsg "Selected Root Drive is $Script:DATA_DRIVE"
-    $Script:PROGRAMS_PATH           = Join-Path "$Script:DATA_DRIVE" "Programs"
-    $Script:MYDOCUMENTS_PATH        = Join-Path "$Script:DATA_DRIVE" "DOCUMENTS"
-    $Script:MYPICTURES_PATH         = Join-Path "$Script:DATA_DRIVE" "Data\Pictures"
-    $Script:MYVIDEOS_PATH           = Join-Path "$Script:DATA_DRIVE" "Data\Videos"
-    $Script:SCREENSHOTS_PATH        = Join-Path "$Script:DATA_DRIVE" "Data\Pictures\Screenshots"
-    $Script:DOWNLOAD_PATH           = Join-Path "$Script:DATA_DRIVE" "Data\Downloads"
-    $Script:DESKTOP_PATH            = Join-Path "$Script:DATA_DRIVE" "Data\Windows\Desktop"
-
-    Set-WellKnownPaths
-
-    write-smsg "PowerShell Profile location is $Profile" -Ok
-
-    } )
-
-$Script:Button02.Add_Click( {
+function Restart-WithAdminPriv{
 
     $Text = "
     Some operations will require elevated privilege
@@ -346,7 +156,69 @@ $Script:Button02.Add_Click( {
                 }
             }
         }
+    }    
+}
+
+function Import-PreCompiled{
+    $PcsPath = "$PSScriptRoot\pcs.ps1"
+    If( -not (Test-Path $PcsPath) ) {
+        write-serr "Missing precompiled script file ${PcsPath}" -Fatal
     }
+    . "$PcsPath"
+    write-smsg "included dependency: $PcsPath" -ok
+   
+}
+
+function Import-Dependencies{
+    $DependenciesPath = "$PSScriptRoot\Includes"
+    If( -not (Test-Path $DependenciesPath) ) {
+        write-serr "Missing Dependencies Path ${DependenciesPath}" -Fatal
+    }
+    $DepList = (Get-ChildItem -Path $DependenciesPath -File -Filter '*.ps1').Fullname
+    foreach($dep in $DepList){
+        . "$dep"
+        write-smsg "included dependency: $dep" -ok
+    }
+}
+
+$ScriptFullname = & { $myInvocation.ScriptName }
+
+if($Script:UsePreCompiledDependencies){
+    Import-PreCompiled    
+}else{
+    Import-Dependencies
+}
+
+
+[void] $Script:ListBox01.Items.Add('c:')
+[void] $Script:ListBox01.Items.Add('x:')
+$Script:ListBox01.SelectedIndex = 0
+
+[void] $Script:ListBox02.Items.Add('MYDOC')
+#[void] $Script:ListBox02.Items.Add('x:')
+$Script:ListBox02.SelectedIndex = 0
+
+$Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
+$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:ListBox02,$Script:Button02,$Button03))
+$Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
+$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
+$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
+$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
+$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
+
+
+#region gui events {
+$Script:Button01.Add_Click( { 
+
+
+    Script:Set-WellKnownPaths
+
+    write-smsg "PowerShell Profile location is $Profile" -Ok
+
+    } )
+
+$Script:Button02.Add_Click( {
+    Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE
  } ) 
 $Script:Button03.Add_Click( {
     Set-RegistryOrganizationHKCU -WhatIf:$Script:TEST_MODE
@@ -362,7 +234,7 @@ $Script:Button06.Add_Click( {
 
     } ) 
 $Script:Button08.Add_Click( { 
-    Set-PowerShellPaths -WhatIf:$Script:TEST_MODE
+    
     } )  
 $Script:Button05.Add_Click( { 
    Write-Title "WINDOWS GIT"
@@ -455,36 +327,6 @@ $Script:Button10.Add_Click( { } )
 
 
 
-try{
-    if (-not(Test-Path "$Script:CONFIGURE_SCRIPT_PATH")){
-        throw "Missing Configure Script at $Script:CONFIGURE_SCRIPT_PATH"
-        return
-    }
-
-
-    . "$Script:CONFIGURE_SCRIPT_PATH"
-    Write-MOk "Included $Script:CONFIGURE_SCRIPT_PATH"
-
-    . "$Script:WINGIT_SCRIPT_PATH"
-    Write-MOk "Included $Script:WINGET_SCRIPT_PATH"
-
-    Register-Assemblies
-    $CheckRes = Check-ValidateBeforeStart
-
-    if($CheckRes -eq $False){throw "Error on validate before start"}
-
-
- 
-
-
-
- 
-
-
-
-}catch{
-    Show-ExceptionDetails($_) -ShowStack
-}
 
 [void]$Script:Form.showdialog()
 

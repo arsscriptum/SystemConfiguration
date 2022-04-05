@@ -75,12 +75,12 @@ $Script:Label01.ForeColor               = $Script:ButtonTextColor
 
 $Script:Button01             = New-Object system.Windows.Forms.Button
 $Script:Button01.FlatStyle   = 'Flat'
-$Script:Button01.text        = "Set Well Known Paths"
+$Script:Button01.text        = "Create wellknown paths"
 $Script:Button01.width       = 260
 $Script:Button01.height      = 30
 $Script:Button01.Anchor      = 'top,right,left'
 $Script:Button01.location    = New-Object System.Drawing.Point(210,40)
-$Script:Button01.Font        = $Script:LabelTestFont
+$Script:Button01.Font        = $Script:ButtonSmallFont
 $Script:Button01.ForeColor   = $Script:ButtonTextColor
 
 $Script:ListBox01 = New-Object System.Windows.Forms.ListBox
@@ -93,14 +93,23 @@ $Script:ListBox01.Font              = $Script:ButtonBigFont
 $Script:ListBox01.ForeColor         = $Script:ButtonTextColor
 
 
+$Script:ListBox02 = New-Object System.Windows.Forms.ListBox
+$Script:ListBox02.FlatStyle         = 'Flat'
+$Script:ListBox02.width             = 133
+$Script:ListBox02.height            = 40
+$Script:ListBox02.Anchor            = 'top,right,left'
+$Script:ListBox02.location          = New-Object System.Drawing.Point(10,80)
+$Script:ListBox02.Font              = $Script:ButtonBigFont
+$Script:ListBox02.ForeColor         = $Script:ButtonTextColor
+
 
 $Script:Button02              = New-Object system.Windows.Forms.Button
 $Script:Button02.FlatStyle    = 'Flat'
-$Script:Button02.text         = "Admin Priv"
-$Script:Button02.width        = 460
+$Script:Button02.text         = "Create PowerShell Directories"
+$Script:Button02.width        = 260
 $Script:Button02.height       = 30
 $Script:Button02.Anchor       = 'top,right,left'
-$Script:Button02.location     = New-Object System.Drawing.Point(10,80)
+$Script:Button02.location     = New-Object System.Drawing.Point(210,80)
 $Script:Button02.Font         = $Script:ButtonSmallFont
 $Script:Button02.ForeColor    = $Script:ButtonTextColor
 
@@ -216,7 +225,7 @@ $Script:Button09.ForeColor        = $Script:ButtonTextColor
 
 $Script:Button08                 = New-Object system.Windows.Forms.Button
 $Script:Button08.FlatStyle       = 'Flat'
-$Script:Button08.text            = "08"
+$Script:Button08.text            = "Create PowerShell Directories"
 $Script:Button08.width           = 133
 $Script:Button08.height          = 30
 $Script:Button08.Anchor          = 'top,right,left'
