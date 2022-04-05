@@ -59,6 +59,7 @@ function Script:CreatePowerShellDirectoryStructure {
 }
 
 
+
 function Script:SetRegistryOrganizationHKCU {
 
     [CmdletBinding(SupportsShouldProcess)]
@@ -86,6 +87,12 @@ function Script:SetRegistryOrganizationHKCU {
         return
     }
         
+function Script:Set-RegistryOrganizationHKCU {
+
+    [CmdletBinding(SupportsShouldProcess)]
+    param
+    ()
+
     #===============================================================================
     # OrganizationHKCU
     #===============================================================================
@@ -93,7 +100,8 @@ function Script:SetRegistryOrganizationHKCU {
     {
         Write-Host "===============================================================================" -f DarkRed    
         Write-Host "A required environment variable needs to be setup (user scope)     `t" -NoNewLine -f DarkYellow ; Write-Host "$Script:OrganizationHKCU" -f Gray 
-        
+
+        $OrgIdentifier = "_gp"
         $OrganizationHKCU = "HKCU:\Software\" + "$OrgIdentifier"
 
         [Environment]::SetEnvironmentVariable('OrganizationHKCU',$OrganizationHKCU,"User")
@@ -227,6 +235,7 @@ function Script:Set-WellKnownPaths {
     Set-ItemProperty "$RegPathShellFolders" 'My Video' -Value "$Script:MYVIDEOS_PATH" -Type ExpandString -Force  -WhatIf:$Script:TEST_MODE | Out-Null
 
     
+<<<<<<< HEAD
 }
 
 
@@ -275,3 +284,4 @@ function Script:Restart-WithAdminPriv{
         }
     }    
 }
+

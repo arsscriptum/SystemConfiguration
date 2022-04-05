@@ -50,7 +50,6 @@ if ($PSBoundParameters.ContainsKey('Admin')) {
 
 }
 
-
 if (-not $env:TEMP) {
     $env:TEMP = Join-Path $env:SystemDrive -ChildPath 'temp'
 }
@@ -74,42 +73,6 @@ if($Script:TEST_MODE){
 Register-Assemblies
 
    
-
-
-
-# ============================================================================================================
-# SCRIPT LOGS
-# ============================================================================================================
-
-function write-serr([string]$msg,[switch]$fatal){    
-    Write-Host -n "❗❗❗ "; Write-Host -f DarkYellow "$msg"
-    if($fatal){ exit; }
-}
-
-function write-smsg([string]$msg,[switch]$ok=$false){
-    if($ok){Write-Host -n "✅ "; }else{ Write-Host -n "⚡ "; }
-    Write-Host " $msg"
-}
-
-function Write-Title{
-
-    [CmdletBinding(SupportsShouldProcess)]
-    param
-    (
-        [Parameter(Mandatory=$true,Position=0)]    
-        [string]$Title
-    )
-
-    Write-Host -f DarkYellow "`n======================================================"
-    Write-Host -n -f DarkRed "$Title"
-    if($Script:TEST_MODE -eq $False){
-        Write-Host -n -f DarkRed "`n"
-    }else{
-        Write-Host -f Red "  ** TEST MODE"
-    }
-    Write-Host -f DarkYellow "======================================================`n"
-
-}
 
 
 function Import-PreCompiled{
@@ -165,113 +128,23 @@ $Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:But
 #  GUI EVENTS
 # ============================================================================================================
 
-$Script:Button01.Add_Click( { 
-    Script:Set-WellKnownPaths
-    write-smsg "PowerShell Profile location is $Profile" -Ok
-    } )
+$Script:Button01.Add_Click( { Script:Set-WellKnownPaths } )
+$Script:Button02.Add_Click( { Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button03.Add_Click( { Set-RegistryOrganizationHKCU -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button04.Add_Click( { Set-SystemEnvironmentValues -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button06.Add_Click( { Set-WellKnownPaths -WhatIf:$Script:TEST_MODE } ) 
 
-$Script:Button02.Add_Click( {
-    $OrgId = $Script:TextBox01.Text
-    Script:SetRegistryOrganizationHKCU -OrgIdentifier:$OrgId  -WhatIf:$Script:TEST_MODE
- } ) 
-$Script:Button03.Add_Click( {
-    Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE
- } ) 
-
-$Script:Button04.Add_Click( {
- } ) 
-$Script:Button06.Add_Click( { 
-    } ) 
-$Script:Button08.Add_Click( { 
-    } )  
-$Script:Button05.Add_Click( { 
-   Write-Title "WINDOWS GIT"
-
-    $GitInstalled = Test-GitInstalled 
-    if($GitInstalled -eq $False){
-        Write-Title 'Invoke-InstallWindowsGit'
-        Invoke-InstallWindowsGit
-        Wait-GitInstalled     
-    }else{
-        Write-MOk "Git Installed"
-    }
-
-    Set-GitUSerData "guillaumeplante.qc@gmail.com" "gp"
-
-    } )  
-$Script:Button07.Add_Click( { 
-    Write-MMsg "PUSHD IN $Script:DEV_ROOT"
-    pushd "$Script:DEV_ROOT"
-
-    Write-Title 'Git Clone BuildAutomation'
-    Invoke-GitClone 'BuildAutomation'
-    Write-Title 'Git Clone DejaInsight'
-    Invoke-GitClone 'DejaInsight'
-    
-    Write-MMsg "POPD GO OUT"
-    popd
-    
-    } )  
-$Script:Button13.Add_Click( { 
-
-
-    Write-MMsg "PUSHD IN $ENV:TEMP"
-    pushd "$ENV:TEMP"
-    Write-Title 'Git Clone PowerShell.Profile'
-    Invoke-GitClone 'PowerShell.Profile'
-
-    Write-MMsg "PUSHD IN PowerShell.Profile"
-    pushd 'PowerShell.Profile'
-    Write-MMsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
-    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH"
-
-    Write-MMsg "Remove-Item -Path `"$Script:POWERSHELL_PATH\Profile`""
-    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
-    Write-MMsg " Copy-Item `"Profile`" `"$Script:POWERSHELL_PATH\Profile`" -Recurse"
-    Copy-Item "Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse 
-
-    Write-MMsg "PUSHD IN $Script:PS_PROJECTS_PATH"
-    pushd "$Script:PS_PROJECTS_PATH"
-
-
-    Write-Title 'Git Clone PowerShell.ModuleBuilder'
-    Invoke-GitClone 'PowerShell.ModuleBuilder'
-
-    Write-MMsg "PUSHD IN PowerShell.ModuleBuilder\setup"
-    pushd "PowerShell.ModuleBuilder\setup"
-    ./Setup.ps1
-
-    Write-MMsg "POPD GO OUT"
-    popd
-
-    } )   
-$Script:Button14.Add_Click( {
-
-    Write-MMsg "PUSHD IN $Script:PS_MODDEV_PATH"
-    pushd "$Script:PS_MODDEV_PATH"
-
-    Write-Title 'Git Clone PowerShell.Module.Core'
-    Invoke-GitClone 'PowerShell.Module.Core'
-
-    Write-Title 'Git Clone PowerShell.Module.Reddit'
-    Invoke-GitClone 'PowerShell.Module.Reddit'
-
-    Write-Title 'Git Clone PowerShell.Module.Github'
-    Invoke-GitClone 'PowerShell.Module.Github'
-
-    Write-Title 'Git Clone PowerShell.Module.WindowsHost'
-    Invoke-GitClone 'PowerShell.Module.WindowsHost'
-
-    Write-MMsg "POPD GO OUT"
-    popd
-
-    Write-MOk "DONE"
- } )  
+$Script:Button08.Add_Click( { } )  
+$Script:Button05.Add_Click( { } )  
+$Script:Button07.Add_Click( { } )  
+$Script:Button13.Add_Click( { } )   
+$Script:Button14.Add_Click( { } )  
 $Script:Button12.Add_Click( { } )
 $Script:Button11.Add_Click( { } ) 
 $Script:Button15.Add_Click( { } )
 $Script:Button09.Add_Click( { } ) 
 $Script:Button10.Add_Click( { } )
+
 
 [void]$Script:Form.showdialog()
 
