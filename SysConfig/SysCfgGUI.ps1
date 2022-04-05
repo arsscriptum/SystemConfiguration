@@ -93,15 +93,15 @@ $Script:Panel06.width                = 480
 $Script:Panel06.Anchor               = 'top,right,left'
 $Script:Panel06.location             = New-Object System.Drawing.Point(10,400)
 write-smsg "created OtherPanel" -ok
-$Script:Debloat                         = New-Object system.Windows.Forms.Label
-$Script:Debloat.text                    = "DEBLOAT OPTIONS"
-$Script:Debloat.AutoSize                = $true
-$Script:Debloat.width                   = 457
-$Script:Debloat.height                  = 142
-$Script:Debloat.Anchor                  = 'top,right,left'
-$Script:Debloat.location                = New-Object System.Drawing.Point(10,9)
-$Script:Debloat.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
-$Script:Debloat.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
+$Script:Label01                         = New-Object system.Windows.Forms.Label
+$Script:Label01.text                    = "DEBLOAT OPTIONS"
+$Script:Label01.AutoSize                = $true
+$Script:Label01.width                   = 457
+$Script:Label01.height                  = 142
+$Script:Label01.Anchor                  = 'top,right,left'
+$Script:Label01.location                = New-Object System.Drawing.Point(10,9)
+$Script:Label01.Font                    = New-Object System.Drawing.Font('Consolas',15,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
+$Script:Label01.ForeColor               = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 $Script:CustomizeBlacklist             = New-Object system.Windows.Forms.Button
 $Script:CustomizeBlacklist.FlatStyle   = 'Flat'
@@ -305,7 +305,7 @@ $Script:InstallNet35.ForeColor          = [System.Drawing.ColorTranslator]::From
 $Script:Form.controls.AddRange(@($Script:Panel02,$Label01Panel,$PanelObj04,$PanelObj05,$PanelObj06,$PanelObj07))
 
 $Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
-$Script:Panel01.controls.AddRange(@($Script:Debloat,$Script:CustomizeBlacklist,$Script:RemoveAllBloatware,$RemoveBlacklistedBloatware))
+$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:CustomizeBlacklist,$Script:RemoveAllBloatware,$RemoveBlacklistedBloatware))
 $Script:Panel02.controls.AddRange(@($Script:Label02,$Script:RevertChanges))
 $Script:Panel03.controls.AddRange(@($Script:Label03,$Script:EnableCortana,$Script:DisableCortana))
 $Script:Panel04.controls.AddRange(@($Script:Label04,$Script:DisableEdgePDFTakeover))
