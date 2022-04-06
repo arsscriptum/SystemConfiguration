@@ -1,6 +1,6 @@
 
 
-function Install-WindowsGit {
+function Script:Install-WindowsGit {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -28,7 +28,7 @@ function Install-WindowsGit {
 
 
 
-function Test-GitInstalled {
+function Script:Test-GitInstalled {
     [CmdletBinding()]
     param()
 
@@ -61,7 +61,7 @@ function Test-GitInstalled {
     }
 }
 
-function Wait-GitInstalled {
+function Script:Wait-GitInstalled {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -80,7 +80,7 @@ function Wait-GitInstalled {
 
 
 
-function Invoke-InstallWindowsGit {
+function Script:Invoke-InstallWindowsGit {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -105,7 +105,7 @@ function Invoke-InstallWindowsGit {
 
 
 
-function Invoke-GitClone {
+function Script:Invoke-GitClone {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -130,7 +130,7 @@ function Invoke-GitClone {
 }
 
 
-function Set-GitUSerData {
+function Script:Set-GitUSerData {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -156,7 +156,7 @@ function Set-GitUSerData {
 }
 
 
-function Get-GithubAccessToken {
+function Script:Get-GithubAccessToken {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
     $RegPath = Get-GithubModuleRegistryPath
@@ -172,7 +172,7 @@ function Get-GithubAccessToken {
     GithubDefaultUsername
     New-ItemProperty -Path "$ENV:OrganizationHKCU\github.com" -Name 'default_username' -Value 'codecastor'
  #>
-function Get-GithubDefaultUsername {
+function Script:Get-GithubDefaultUsername {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
     $RegPath = Get-GithubModuleRegistryPath
@@ -187,7 +187,7 @@ function Get-GithubDefaultUsername {
     GithubDefaultUsername
     New-ItemProperty -Path "$ENV:OrganizationHKCU\github.com" -Name 'default_clone_path' -Value 'P:\Github-Repositories'
  #>
-function Get-GithubDefaultClonePath {
+function Script:Get-GithubDefaultClonePath {
     [CmdletBinding(SupportsShouldProcess)]
     param ()
     $RegPath = Get-GithubModuleRegistryPath
@@ -199,7 +199,7 @@ function Get-GithubDefaultClonePath {
 }
 
 
-function Get-GitExecutablePath{
+function Script:Get-GitExecutablePath{
     [CmdletBinding(SupportsShouldProcess)]
     param ()
     $GitPath = (get-command "git.exe" -ErrorAction Ignore).Source
