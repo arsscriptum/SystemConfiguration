@@ -152,14 +152,14 @@ if($Script:UsePreCompiledDependencies){
 $Script:ListBox01.SelectedIndex = 0
 
 $Script:TextBox01.Text = '_gp'
-
-$Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
+#,$Script:Panel04,$Script:Panel05,$Script:Panel06
+$Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel01))
 $Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:TextBox01,$Script:Button02,$Button03,$Button31))
 $Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
-$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
-$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
-$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
-$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
+#$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
+#$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
+#$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
+#$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
 
 $Script:Button01.Add_Click( { Script:SetWellKnownPaths } )
 $Script:Button02.Add_Click( { $p = $Script:TextBox01.Text ; Script:SetRegistryOrganizationHKCU -Identifier "$p" -WhatIf:$Script:TEST_MODE } ) 
@@ -167,7 +167,10 @@ $Script:Button03.Add_Click( { Script:CreatePowerShellDirectoryStructure -WhatIf:
 $Script:Button04.Add_Click( { SetSystemEnvironmentValues -WhatIf:$Script:TEST_MODE } ) 
 $Script:Button31.Add_Click( { Script:ClonePwshProfiles -WhatIf:$Script:TEST_MODE ; Script:ClonePwshModules -WhatIf:$Script:TEST_MODE ; } ) 
 $Script:Button12.Add_Click( { Script:RefreshEnvironmentVariables } )
-$Script:Button11.Add_Click( { } ) 
+
+
+
+
 [void]$Script:Form.showdialog()
 
 

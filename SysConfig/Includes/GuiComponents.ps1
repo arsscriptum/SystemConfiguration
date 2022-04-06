@@ -33,7 +33,7 @@ function New-SimpleButton([int]$x,[int]$y){
 }
 
 $Script:Form                        = New-Object system.Windows.Forms.Form
-$Script:Form.ClientSize             = New-Object System.Drawing.Point(550,620)
+$Script:Form.ClientSize             = New-Object System.Drawing.Point(550,300)
 $Script:Form.StartPosition          = 'CenterScreen'
 $Script:Form.FormBorderStyle        = 'FixedSingle'
 $Script:Form.MinimizeBox            = $false
