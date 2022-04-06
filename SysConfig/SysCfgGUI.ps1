@@ -161,85 +161,13 @@ $Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
 $Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
 $Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
 
-
-#region gui events {
 $Script:Button01.Add_Click( { Script:SetWellKnownPaths } )
 $Script:Button02.Add_Click( { $p = $Script:TextBox01.Text ; Script:SetRegistryOrganizationHKCU -Identifier "$p" -WhatIf:$Script:TEST_MODE } ) 
 $Script:Button03.Add_Click( { Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE } ) 
 $Script:Button04.Add_Click( { SetSystemEnvironmentValues -WhatIf:$Script:TEST_MODE } ) 
-$Script:Button31.Add_Click( { Script:ClonePwshProfiles -WhatIf:$Script:TEST_MODE} ) 
-$Script:Button06.Add_Click( { } ) 
-$Script:Button08.Add_Click( { } )  
-$Script:Button05.Add_Click( { } )  
-$Script:Button07.Add_Click( { } )  
-$Script:Button13.Add_Click( { 
-
-
-    Write-MMsg "PUSHD IN $ENV:TEMP"
-    pushd "$ENV:TEMP"
-    Write-Title 'Git Clone PowerShell.Profile'
-    Invoke-GitClone 'PowerShell.Profile'
-
-    Write-MMsg "PUSHD IN PowerShell.Profile"
-    pushd 'PowerShell.Profile'
-    Write-MMsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
-    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH"
-
-    Write-MMsg "Remove-Item -Path `"$Script:POWERSHELL_PATH\Profile`""
-    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore
-    Write-MMsg " Copy-Item `"Profile`" `"$Script:POWERSHELL_PATH\Profile`" -Recurse"
-    Copy-Item "Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse 
-
-    Write-MMsg "PUSHD IN $Script:PS_PROJECTS_PATH"
-    pushd "$Script:PS_PROJECTS_PATH"
-
-
-    Write-Title 'Git Clone PowerShell.ModuleBuilder'
-    Invoke-GitClone 'PowerShell.ModuleBuilder'
-
-    Write-MMsg "PUSHD IN PowerShell.ModuleBuilder\setup"
-    pushd "PowerShell.ModuleBuilder\setup"
-    ./Setup.ps1
-
-    Write-MMsg "POPD GO OUT"
-    popd
-
-    } )   
-$Script:Button14.Add_Click( {
-
-    Write-MMsg "PUSHD IN $Script:PS_MODDEV_PATH"
-    pushd "$Script:PS_MODDEV_PATH"
-
-    Write-Title 'Git Clone PowerShell.Module.Core'
-    Invoke-GitClone 'PowerShell.Module.Core'
-
-    Write-Title 'Git Clone PowerShell.Module.Reddit'
-    Invoke-GitClone 'PowerShell.Module.Reddit'
-
-    Write-Title 'Git Clone PowerShell.Module.Github'
-    Invoke-GitClone 'PowerShell.Module.Github'
-
-    Write-Title 'Git Clone PowerShell.Module.WindowsHost'
-    Invoke-GitClone 'PowerShell.Module.WindowsHost'
-
-    Write-MMsg "POPD GO OUT"
-    popd
-
-    Write-MOk "DONE"
- } )  
-
-$Script:Button12.Add_Click( {
-    Script:RefreshEnvironmentVariables 
-
-} )
+$Script:Button31.Add_Click( { Script:ClonePwshProfiles -WhatIf:$Script:TEST_MODE ; Script:ClonePwshModules -WhatIf:$Script:TEST_MODE ; } ) 
+$Script:Button12.Add_Click( { Script:RefreshEnvironmentVariables } )
 $Script:Button11.Add_Click( { } ) 
-$Script:Button15.Add_Click( { } )
-$Script:Button09.Add_Click( { } ) 
-$Script:Button10.Add_Click( { } )
-
-
-
-
 [void]$Script:Form.showdialog()
 
 

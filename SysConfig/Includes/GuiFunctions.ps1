@@ -83,7 +83,11 @@ function Script:SetRegistryOrganizationHKCU {
         return
     }
 
-    $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE
+    $Exists = Test-Path -Path "$OrganizationHKCU"
+    if($Exists -eq $False){
+       $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE    
+    }
+    
     
     if($Script:TEST_MODE -eq $False){
         $ENV:OrganizationHKCU = "$OrganizationHKCU"
@@ -177,8 +181,6 @@ function Script:SetWellKnownPaths {
         return
     }
      
-
-
     New-Item -Path "$Script:DESKTOP_PATH" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE | Out-Null
     New-Item -Path "$Script:MYPICTURES_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE | Out-Null
     New-Item -Path "$Script:SCREENSHOTS_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE | Out-Null
@@ -203,25 +205,86 @@ function Script:SetWellKnownPaths {
     
 }
 
+function Script:GetRepoUrl {
+    [CmdletBinding(SupportsShouldProcess)]
+    param(
+        [Parameter(Mandatory=$true)]
+        [string]$Name
+    )
 
+    $Url = "git@github.com:arsscriptum/$Name" + ".git" 
+    return $Url
+}
+
+function Script:ClonePwshModules {
+
+    [CmdletBinding(SupportsShouldProcess)]
+    param
+    ()
+
+    pushd "$Script:PS_MODDEV_PATH"
+    $CmdData = Get-Command "git.exe"
+    if($CmdData){$GitExe = $CmdData.Source}
+
+    $BuilderUrl = Script:GetRepoUrl -Name 'PowerShell.ModuleBuilder'
+    $CoreUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Core'
+    $GithubUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Github'
+    $WindowsHostUrl = Script:GetRepoUrl -Name 'PowerShell.Module.WindowsHost'
+    $RedditUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Reddit'
+
+    write-smsg "clone: $CoreUrl"
+    &"$GitExe" "clone" "$CoreUrl"
+    write-smsg "clone: $RedditUrl"
+    &"$GitExe" "clone" "$RedditUrl"
+    write-smsg "clone: $GithubUrl"
+    &"$GitExe" "clone" "$GithubUrl"
+    write-smsg "clone: $WindowsHostUrl"
+    &"$GitExe" "clone" "$WindowsHostUrl"
+ 
+    popd
+
+    pushd "$Script:PS_PROJECTS_PATH"
+    write-smsg "clone: $BuilderUrl"
+    &"$GitExe" "clone" "$BuilderUrl"
+    pushd 'PowerShell.ModuleBuilder\setup'
+    $stp = Join-Path ($PWD).Path 'Setup.ps1'
+    . "$stp"
+    popd
+    popd
+
+    
+}
 
 function Script:ClonePwshProfiles {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
     ()
-    
+
+    if($Script:TEST_MODE -eq $True){
+        return
+    }
+
+    $CmdData = Get-Command "git.exe"
+    if($CmdData){$GitExe = $CmdData.Source}
     $NewDir = ((New-TemporaryDirectory).Fullname)
     pushd $NewDir
     
     write-smsg "Cloning PowerShell.Profile"
-    Invoke-GitClone 'PowerShell.Profile' -WhatIf:$Script:TEST_MODE 
-    pushd 'PowerShell.Profile'
-    write-smsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
-    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH" -WhatIf:$Script:TEST_MODE 
-    popd
-    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE 
-    Copy-Item "PowerShell.Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse -WhatIf:$Script:TEST_MODE 
+    
+    $ProfileUrl = Script:GetRepoUrl -Name 'PowerShell.Profile'
+    &"$GitExe" "clone" "$ProfileUrl"
+
+    $ok = Test-Path -Path 'PowerShell.Profile'
+    
+    if($ok){
+        pushd 'PowerShell.Profile'
+        write-smsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
+        Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH" -WhatIf:$Script:TEST_MODE 
+        popd
+        $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE 
+        Copy-Item "PowerShell.Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse -WhatIf:$Script:TEST_MODE 
+    }
 }
 
 
