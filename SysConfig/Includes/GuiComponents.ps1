@@ -1,12 +1,35 @@
+<#
+  ╓──────────────────────────────────────────────────────────────────────────────────────
+  ║   GuiComponents.ps1      
+  ║   
+  ║   
+  ╙──────────────────────────────────────────────────────────────────────────────────────
+ #>
+
+
 
 $Script:LabelTestFont = New-Object System.Drawing.Font("Microsoft Sans Serif", 8, [System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold,[System.Drawing.GraphicsUnit]::Point))
 $Script:LabelSmallFont = New-Object System.Drawing.Font('Consolas',10,     [System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:LabelMediumFont = New-Object System.Drawing.Font('Consolas',10,[System.Drawing.FontStyle]([System.Drawing.FontStyle]::Bold))
 $Script:ButtonSmallFont = New-Object System.Drawing.Font('Consolas',7)
-$Script:ButtonMediumFont = New-Object System.Drawing.Font('Consolas',12)
-$Script:ButtonBigFont = New-Object System.Drawing.Font('Consolas',16)
-$Script:ButtonHugeFont = New-Object System.Drawing.Font('Consolas',20)
 
+$Script:ButtonBigFont = New-Object System.Drawing.Font('Consolas',16)
+#$Script:ButtonNerdFont = New-Object System.Drawing.Font('3270Medium Nerd Font Mono',12)
+$Script:ButtonNerdFont = New-Object System.Drawing.Font('3270SemiNarrow Nerd Font',10)
+$Script:ButtonMediumFont =ButtonNerdFont # New-Object System.Drawing.Font('Consolas',12)
+
+function New-SimpleButton([int]$x,[int]$y){
+    $NewBtn = New-Object system.Windows.Forms.Button
+    $NewBtn.FlatStyle   = 'Flat'
+    $NewBtn.text        = "Create wellknown paths"
+    $NewBtn.width       = 260
+    $NewBtn.height      = 30
+    $NewBtn.Anchor      = 'top,right,left'
+    $NewBtn.location    = New-Object System.Drawing.Point($x,$y)
+    $NewBtn.Font        = $Script:ButtonSmallFont
+    $NewBtn.ForeColor   = $Script:ButtonTextColor
+    return $NewBtn
+}
 
 $Script:Form                            = New-Object system.Windows.Forms.Form
 $Script:Form.ClientSize                 = New-Object System.Drawing.Point(550,620)
@@ -22,8 +45,8 @@ $Script:Form.BackColor                  = [System.Drawing.ColorTranslator]::From
 $Script:ButtonTextColor                 = [System.Drawing.ColorTranslator]::FromHtml("#eeeeee")
 
 if($Script:TEST_MODE){
-    $Script:Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#5c1a00")  
-    $Script:ButtonTextColor                 = [System.Drawing.ColorTranslator]::FromHtml("#ffef61")
+    $Script:Form.BackColor                  = [System.Drawing.ColorTranslator]::FromHtml("#24aa99")  
+    $Script:ButtonTextColor                 = [System.Drawing.ColorTranslator]::FromHtml("#101010")
     $Script:Form.text                       = "System Configurator *TEST MODE*"  
 }
 
@@ -64,7 +87,7 @@ $Script:Panel06.Anchor               = 'top,right,left'
 $Script:Panel06.location             = New-Object System.Drawing.Point(10,400)
 
 $Script:Label01                         = New-Object system.Windows.Forms.Label
-$Script:Label01.text                    = "Root Drive / System, Well Knowns Paths"
+$Script:Label01.text                    = "well known paths and pwsh directories"
 $Script:Label01.AutoSize                = $true
 $Script:Label01.width                   = 457
 $Script:Label01.height                  = 142
@@ -72,6 +95,8 @@ $Script:Label01.Anchor                  = 'top,right,left'
 $Script:Label01.location                = New-Object System.Drawing.Point(10,9)
 $Script:Label01.Font                    = $Script:LabelSmallFont
 $Script:Label01.ForeColor               = $Script:ButtonTextColor
+
+
 
 $Script:Button01             = New-Object system.Windows.Forms.Button
 $Script:Button01.FlatStyle   = 'Flat'
@@ -93,19 +118,19 @@ $Script:ListBox01.Font              = $Script:ButtonBigFont
 $Script:ListBox01.ForeColor         = $Script:ButtonTextColor
 
 
-$Script:ListBox02 = New-Object System.Windows.Forms.ListBox
-$Script:ListBox02.FlatStyle         = 'Flat'
-$Script:ListBox02.width             = 133
-$Script:ListBox02.height            = 40
-$Script:ListBox02.Anchor            = 'top,right,left'
-$Script:ListBox02.location          = New-Object System.Drawing.Point(10,80)
-$Script:ListBox02.Font              = $Script:ButtonBigFont
-$Script:ListBox02.ForeColor         = $Script:ButtonTextColor
+$Script:TextBox01 = New-Object System.Windows.Forms.TextBox
+$Script:TextBox01.FlatStyle         = 'Flat'
+$Script:TextBox01.width             = 133
+$Script:TextBox01.height            = 40
+$Script:TextBox01.Anchor            = 'top,right,left'
+$Script:TextBox01.location          = New-Object System.Drawing.Point(10,80)
+$Script:TextBox01.Font              = $Script:ButtonBigFont
+$Script:TextBox01.ForeColor         = $Script:ButtonTextColor
 
 
 $Script:Button02              = New-Object system.Windows.Forms.Button
 $Script:Button02.FlatStyle    = 'Flat'
-$Script:Button02.text         = "Create PowerShell Directories"
+$Script:Button02.text         = "Registry Organisation Root"
 $Script:Button02.width        = 260
 $Script:Button02.height       = 30
 $Script:Button02.Anchor       = 'top,right,left'
@@ -113,15 +138,26 @@ $Script:Button02.location     = New-Object System.Drawing.Point(210,80)
 $Script:Button02.Font         = $Script:ButtonSmallFont
 $Script:Button02.ForeColor    = $Script:ButtonTextColor
 
-$Script:Button03                 = New-Object system.Windows.Forms.Button
-$Script:Button03.FlatStyle       = 'Flat'
-$Script:Button03.text            = "RegistryOrganizationHKCU"
-$Script:Button03.width           = 460
-$Script:Button03.height          = 30
-$Script:Button03.Anchor          = 'top,right,left'
-$Script:Button03.location        = New-Object System.Drawing.Point(10,120)
-$Script:Button03.Font            = $Script:ButtonSmallFont
-$Script:Button03.ForeColor       = $Script:ButtonTextColor
+
+$Script:Button03                  = New-Object system.Windows.Forms.Button
+$Script:Button03.FlatStyle        = 'Flat'
+$Script:Button03.text             = "create pwsh dir"
+$Script:Button03.width            = 225
+$Script:Button03.height           = 30
+$Script:Button03.Anchor           = 'top,right,left'
+$Script:Button03.location         = New-Object System.Drawing.Point(10,120)
+$Script:Button03.Font             = $Script:ButtonSmallFont
+$Script:Button03.ForeColor        = $Script:ButtonTextColor
+
+$Script:Button31             = New-Object system.Windows.Forms.Button
+$Script:Button31.FlatStyle   = 'Flat'
+$Script:Button31.text        = "sync pwsh profile"
+$Script:Button31.width       = 225
+$Script:Button31.height      = 30
+$Script:Button31.Anchor      = 'top,right,left'
+$Script:Button31.location    = New-Object System.Drawing.Point(245,120)
+$Script:Button31.Font        = $Script:ButtonSmallFont
+$Script:Button31.ForeColor   = $Script:ButtonTextColor
 
 $Script:Label02                        = New-Object system.Windows.Forms.Label
 $Script:Label02.text                   = "Label02"
@@ -152,6 +188,7 @@ $Script:Label03.Anchor                  = 'top,right,left'
 $Script:Label03.location                = New-Object System.Drawing.Point(10,10)
 $Script:Label03.Font                    = $Script:LabelSmallFont
 $Script:Label03.ForeColor               = $Script:ButtonTextColor
+
 
 $Script:Button05                   = New-Object system.Windows.Forms.Button
 $Script:Button05.FlatStyle         = 'Flat'
@@ -255,7 +292,7 @@ $Script:Button10.ForeColor        = $Script:ButtonTextColor
 
 $Script:Button12             = New-Object system.Windows.Forms.Button
 $Script:Button12.FlatStyle   = 'Flat'
-$Script:Button12.text        = "12"
+$Script:Button12.text        = "Refresh Environment Variables"
 $Script:Button12.width       = 225
 $Script:Button12.height      = 30
 $Script:Button12.Anchor      = 'top,right,left'

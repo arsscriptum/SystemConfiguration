@@ -116,49 +116,6 @@ function Write-Title{
 # SCRIPT Dependencies
 # ============================================================================================================
 
-function Restart-WithAdminPriv{
-
-    $Text = "
-    Some operations will require elevated privilege
-    <LineBreak />
-            Do you want to run this script as an Administrator?<LineBreak />
-            <LineBreak />
-             - Select `"Yes`" to Run as an Administrator<LineBreak />
-             - Select `"No`" to not run this as an Administrator<LineBreak />
-             - Select `"Cancel`" to stop the script.<LineBreak />
-"
-
-
-    $ErrorMsgParams = @{
-        Title = "Error"
-        TitleBackground = "Yellow"
-        TitleTextForeground = "Red"
-        TitleFontWeight = "UltraBold"
-        TitleFontSize = 20
-        ButtonType = "Yes-No-Cancel"
-    }
-
-
-
-    if($Script:TEST_MODE -eq $False){
-        If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
-            Show-MessageBox @ErrorMsgParams -Content $Text
-            $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
-            Switch ($Prompt) {
-                #This will debloat Windows 10
-                Yes {
-                    Write-Host "You didn't run this script as an Administrator. This script will self elevate to run as an Administrator and continue."
-                    Start-Process "$Script:PwshExe" -ArgumentList ("-NoProfile -ExecutionPolicy Bypass -File `"{0}`"" -f $PSCommandPath) -Verb RunAs
-                    Exit
-                }
-                No {
-                    Break
-                }
-            }
-        }
-    }    
-}
-
 function Import-PreCompiled{
     $PcsPath = "$PSScriptRoot\pcs.ps1"
     If( -not (Test-Path $PcsPath) ) {
@@ -194,12 +151,10 @@ if($Script:UsePreCompiledDependencies){
 [void] $Script:ListBox01.Items.Add('x:')
 $Script:ListBox01.SelectedIndex = 0
 
-[void] $Script:ListBox02.Items.Add('MYDOC')
-#[void] $Script:ListBox02.Items.Add('x:')
-$Script:ListBox02.SelectedIndex = 0
+$Script:TextBox01.Text = '_gp'
 
 $Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel01,$Script:Panel03,$Script:Panel04,$Script:Panel05,$Script:Panel06))
-$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:ListBox02,$Script:Button02,$Button03))
+$Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:TextBox01,$Script:Button02,$Button03,$Button31))
 $Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04))
 $Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
 $Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
@@ -208,62 +163,15 @@ $Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:But
 
 
 #region gui events {
-$Script:Button01.Add_Click( { 
-
-
-    Script:Set-WellKnownPaths
-
-    write-smsg "PowerShell Profile location is $Profile" -Ok
-
-    } )
-
-$Script:Button02.Add_Click( {
-    Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE
- } ) 
-$Script:Button03.Add_Click( {
-    Set-RegistryOrganizationHKCU -WhatIf:$Script:TEST_MODE
-
- } ) 
-
-$Script:Button04.Add_Click( {
-    Set-SystemEnvironmentValues -WhatIf:$Script:TEST_MODE
-
- } ) 
-$Script:Button06.Add_Click( { 
-    Set-WellKnownPaths -WhatIf:$Script:TEST_MODE
-
-    } ) 
-$Script:Button08.Add_Click( { 
-    
-    } )  
-$Script:Button05.Add_Click( { 
-   Write-Title "WINDOWS GIT"
-
-    $GitInstalled = Test-GitInstalled 
-    if($GitInstalled -eq $False){
-        Write-Title 'Invoke-InstallWindowsGit'
-        Invoke-InstallWindowsGit
-        Wait-GitInstalled     
-    }else{
-        Write-MOk "Git Installed"
-    }
-
-    Set-GitUSerData "guillaumeplante.qc@gmail.com" "gp"
-
-    } )  
-$Script:Button07.Add_Click( { 
-    Write-MMsg "PUSHD IN $Script:DEV_ROOT"
-    pushd "$Script:DEV_ROOT"
-
-    Write-Title 'Git Clone BuildAutomation'
-    Invoke-GitClone 'BuildAutomation'
-    Write-Title 'Git Clone DejaInsight'
-    Invoke-GitClone 'DejaInsight'
-    
-    Write-MMsg "POPD GO OUT"
-    popd
-    
-    } )  
+$Script:Button01.Add_Click( { Script:SetWellKnownPaths } )
+$Script:Button02.Add_Click( { $p = $Script:TextBox01.Text ; Script:SetRegistryOrganizationHKCU -Identifier "$p" -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button03.Add_Click( { Script:CreatePowerShellDirectoryStructure -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button04.Add_Click( { SetSystemEnvironmentValues -WhatIf:$Script:TEST_MODE } ) 
+$Script:Button31.Add_Click( { Script:ClonePwshProfiles -WhatIf:$Script:TEST_MODE} ) 
+$Script:Button06.Add_Click( { } ) 
+$Script:Button08.Add_Click( { } )  
+$Script:Button05.Add_Click( { } )  
+$Script:Button07.Add_Click( { } )  
 $Script:Button13.Add_Click( { 
 
 
@@ -319,7 +227,11 @@ $Script:Button14.Add_Click( {
 
     Write-MOk "DONE"
  } )  
-$Script:Button12.Add_Click( { } )
+
+$Script:Button12.Add_Click( {
+    Script:RefreshEnvironmentVariables 
+
+} )
 $Script:Button11.Add_Click( { } ) 
 $Script:Button15.Add_Click( { } )
 $Script:Button09.Add_Click( { } ) 

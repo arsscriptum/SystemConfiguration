@@ -3,6 +3,15 @@
 # SCRIPT FUNCTIONS
 # ============================================================================================================
 
+Register-Assemblies
+$Script:MessageBoxParams = @{
+    Title = "Confirmation"
+    TitleBackground = "Gray"
+    TitleTextForeground = "MidnightBlue"
+    TitleFontWeight = "UltraBold"
+    TitleFontSize = 16
+    ButtonType = "Yes-No"
+}
 
 function Script:CreatePowerShellDirectoryStructure {
 
@@ -35,15 +44,7 @@ function Script:CreatePowerShellDirectoryStructure {
     <LineBreak />
     They will be created if non existant...
 "
-     Register-Assemblies
-    $MessageBoxParams = @{
-        Title = "Confirmation"
-        TitleBackground = "White"
-        TitleTextForeground = "Blue"
-        TitleFontWeight = "UltraBold"
-        TitleFontSize = 20
-        ButtonType = "Yes-No-Cancel"
-    }
+
 
     Show-MessageBox @MessageBoxParams -Content $Text
     $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
@@ -59,35 +60,39 @@ function Script:CreatePowerShellDirectoryStructure {
 }
 
 
-function Script:Set-RegistryOrganizationHKCU {
+function Script:SetRegistryOrganizationHKCU {
 
     [CmdletBinding(SupportsShouldProcess)]
-    param
-    ()
+    param (
+        [Parameter(Position=0,Mandatory=$true)]
+        [string]$Identifier
+    ) 
+  
+         
+    $OrgValue = $ENV:OrganizationHKCU
+    Write-Host -n -f DarkRed "[SetRegistryOrganizationHKCU] "
+    Write-Host -f DarkYellow " Identifier : $Identifier , current ENV:OrganizationHKCU is $OrgValue"
+    $OrganizationHKCU = "HKCU:\Software\" + "$Identifier"
 
-    #===============================================================================
-    # OrganizationHKCU
-    #===============================================================================
-    if( ($ENV:OrganizationHKCU -eq $null) -Or ($ENV:OrganizationHKCU -eq '') )
-    {
-        Write-Host "===============================================================================" -f DarkRed    
-        Write-Host "A required environment variable needs to be setup (user scope)     `t" -NoNewLine -f DarkYellow ; Write-Host "$Script:OrganizationHKCU" -f Gray 
-        $OrgIdentifier = "_gp"
-        $OrganizationHKCU = "HKCU:\Software\" + "$OrgIdentifier"
+    $Text = "This will be the registry root path for all local development apps<LineBreak />
+    <Bold>$OrganizationHKCU</Bold> <LineBreak />
+"
+    Show-MessageBox @MessageBoxParams -Content $Text
+    $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
+    if($Prompt -ne 'Yes') {
+        return
+    }
 
-        [Environment]::SetEnvironmentVariable('OrganizationHKCU',$OrganizationHKCU,"User")
-
-        Write-Host "Setting OrganizationHKCU --> $OrganizationHKCU [User]"  -ForegroundColor Yellow
-        $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE
-
-        $Cmd = Get-Command "RefreshEnv.cmd"
-        if($Cmd){
-            $RefreshEnv = $Cmd.Source
-            &"$RefreshEnv"
-        }
-
+    $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE
+    
+    if($Script:TEST_MODE -eq $False){
         $ENV:OrganizationHKCU = "$OrganizationHKCU"
-
+        [Environment]::SetEnvironmentVariable('OrganizationHKCU',$OrganizationHKCU,"User")
+    }else{
+        Write-Host -n -f DarkRed "[WhatIf] "
+        Write-Host -f DarkYellow "ENV:OrganizationHKCU = `"$OrganizationHKCU`""
+        Write-Host -n -f DarkRed "[WhatIf] "
+        Write-Host -f DarkYellow "SetEnvironmentVariable(`"OrganizationHKCU`",$OrganizationHKCU,`"User`")"
     }
 }
 
@@ -110,7 +115,7 @@ function Script:Check-ValidateBeforeStart {
 }
 
 
-function Script:Set-SystemEnvironmentValues {
+function Script:SetSystemEnvironmentValues {
 
     [CmdletBinding(SupportsShouldProcess)]
     param
@@ -120,17 +125,17 @@ function Script:Set-SystemEnvironmentValues {
 
     if($Script:TEST_MODE -eq $False){
         &"$RegExe" "import" "$Script:REG_GLOBAL_ENV"
-        Write-MOk "Registry Import $Script:REG_GLOBAL_ENV"
+        write-smsg "Registry Import $Script:REG_GLOBAL_ENV"
         
         &"$RegExe" "import" "$Script:REG_USER_ENV"
-        Write-MOk "Registry Import $Script:REG_USER_ENV"
+        write-smsg "Registry Import $Script:REG_USER_ENV"
     }else{
-        Write-MMsg "WhatIf : Registry Import $Script:REG_GLOBAL_ENV"
-        Write-MMsg "WhatIf : Registry Import $Script:REG_USER_ENV"
+        write-smsg "WhatIf : Registry Import $Script:REG_GLOBAL_ENV"
+        write-smsg "WhatIf : Registry Import $Script:REG_USER_ENV"
     }
 }
 
-function Script:Set-WellKnownPaths {
+function Script:SetWellKnownPaths {
 
     [CmdletBinding(SupportsShouldProcess)]
     param()
@@ -165,16 +170,6 @@ function Script:Set-WellKnownPaths {
     <LineBreak />
     They will be created if non existant...
 "
-     Register-Assemblies
-    $MessageBoxParams = @{
-        Title = "Confirmation"
-        TitleBackground = "White"
-        TitleTextForeground = "Blue"
-        TitleFontWeight = "UltraBold"
-        TitleFontSize = 20
-
-        ButtonType = "Yes-No-Cancel"
-    }
 
     Show-MessageBox @MessageBoxParams -Content $Text
     $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
@@ -207,3 +202,108 @@ function Script:Set-WellKnownPaths {
 
     
 }
+
+
+
+function Script:ClonePwshProfiles {
+
+    [CmdletBinding(SupportsShouldProcess)]
+    param
+    ()
+    
+    $NewDir = ((New-TemporaryDirectory).Fullname)
+    pushd $NewDir
+    
+    write-smsg "Cloning PowerShell.Profile"
+    Invoke-GitClone 'PowerShell.Profile' -WhatIf:$Script:TEST_MODE 
+    pushd 'PowerShell.Profile'
+    write-smsg "COPY Microsoft.PowerShell_profile.ps1 --> to $Script:POWERSHELL_PATH"
+    Copy-Item "Microsoft.PowerShell_profile.ps1" "$Script:POWERSHELL_PATH" -WhatIf:$Script:TEST_MODE 
+    popd
+    $Null=Remove-Item -Path "$Script:POWERSHELL_PATH\Profile" -Recurse -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE 
+    Copy-Item "PowerShell.Profile" "$Script:POWERSHELL_PATH\Profile" -Recurse -WhatIf:$Script:TEST_MODE 
+}
+
+
+function Script:RefreshEnvironmentVariables {
+
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+    
+    $Cmds = @('RefreshEnv.cmd','RefreshEnvironment.exe')
+    ForEach($cmd in $Cmds){
+        $CmdData = Get-Command "$cmd"
+        if($CmdData){
+            $RefreshEnv = $CmdData.Source
+            Write-Title "Refreshing Environment Variables using $RefreshEnv"
+            $Text = "Refresh Environment Variables using:<LineBreak /><LineBreak />
+        <Bold>$RefreshEnv</Bold><LineBreak />
+        <LineBreak />
+"
+            Show-MessageBox @MessageBoxParams -Content $Text
+            &"$RefreshEnv"
+        }
+    } 
+}
+
+
+function RestartWithAdminPriv{
+
+    $Text = "
+    Some operations will require elevated privilege
+    <LineBreak />
+            Do you want to run this script as an Administrator?<LineBreak />
+            <LineBreak />
+             - Select `"Yes`" to Run as an Administrator<LineBreak />
+             - Select `"No`" to not run this as an Administrator<LineBreak />
+             - Select `"Cancel`" to stop the script.<LineBreak />
+"
+
+
+    $ErrorMsgParams = @{
+        Title = "Error"
+        TitleBackground = "Yellow"
+        TitleTextForeground = "Red"
+        TitleFontWeight = "UltraBold"
+        TitleFontSize = 20
+        ButtonType = "Yes-No-Cancel"
+    }
+
+
+
+    if($Script:TEST_MODE -eq $False){
+        If (!([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole]'Administrator')) {
+            Show-MessageBox @ErrorMsgParams -Content $Text
+            $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
+            Switch ($Prompt) {
+                #This will debloat Windows 10
+                Yes {
+                    Write-Host "You didn't run this script as an Administrator. This script will self elevate to run as an Administrator and continue."
+                    Start-Process "$Script:PwshExe" -ArgumentList ("-NoProfile -ExecutionPolicy Bypass -File `"{0}`"" -f $PSCommandPath) -Verb RunAs
+                    Exit
+                }
+                No {
+                    Break
+                }
+            }
+        }
+    }    
+}
+
+
+<#
+
+Show-MessageBox: Cannot validate argument on parameter 'TitleTextForeground'. 
+The argument "dBlue" does not belong to the set "AliceBlue,AntiqueWhite,Aqua,Aquamarine,Azure,
+Beige,Bisque,Black,BlanchedAlmond,Blue,BlueViolet,Brown,BurlyWood,CadetBlue,Chartreuse,Chocolate,
+Coral,CornflowerBlue,Cornsilk,Crimson,Cyan,DarkBlue,DarkCyan,DarkGoldenrod,DarkGray,DarkGreen,
+DarkKhaki,DarkMagenta,DarkOliveGreen,DarkOrange,DarkOrchid,DarkRed,DarkSalmon,DarkSeaGreen,
+DarkSlateBlue,DarkSlateGray,DarkTurquoise,DarkViolet,DeepPink,DeepSkyBlue,DimGray,DodgerBlue,
+Firebrick,FloralWhite,ForestGreen,Fuchsia,Gainsboro,GhostWhite,Gold,Goldenrod,Gray,Green,GreenYellow,
+Honeydew,HotPink,IndianRed,Indigo,Ivory,Khaki,Lavender,LavenderBlush,LawnGreen,LemonChiffon,
+LightBlue,LightCoral,LightCyan,LightGoldenrodYellow,LightGray,LightGreen,LightPink,LightSalmon,
+LightSeaGreen,LightSkyBlue,LightSlateGray,LightSteelBlue,LightYellow,Lime,LimeGreen,Linen,Magenta,
+Maroon,MediumAquamarine,MediumBlue,MediumOrchid,MediumPurple,MediumSeaGreen,MediumSlateBlue,
+MediumSpringGreen,MediumTurquoise,MediumVioletRed,MidnightBlue,MintCream,MistyRose,Moccasin,
+NavajoWhite,Navy,OldLace,Olive,OliveDrab,Orange,OrangeRed,Orchid,PaleGoldenrod,PaleGreen,PaleTurquoise,PaleVioletRed,PapayaWhip,PeachPuff,Peru,Pink,Plum,PowderBlue,Purple,Red,RosyBrown,RoyalBlue,SaddleBrown,Salmon,SandyBrown,SeaGreen,SeaShell,Sienna,Silver,SkyBlue,SlateBlue,SlateGray,Snow,SpringGreen,SteelBlue,Tan,Teal,Thistle,Tomato,Transparent,Turquoise,Violet,Wheat,White,WhiteSmoke,Yellow,YellowGreen" specified by the ValidateSet attribute. Supply an argument that is in the set and then try the command again.
+#>
