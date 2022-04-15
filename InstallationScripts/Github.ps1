@@ -32,20 +32,35 @@ if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyCon
     Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
 }
 
-choco install pasteboard
+#################################################################################
+## Set-Service
 Set-Service -Name "ssh-agent" -StartupType Automatic
 Start-Service -Name "ssh-agent"
+
+
+#################################################################################
+## ALWAYS YES
+choco feature enable -n allowGlobalConfirmation
+
+#################################################################################
+## INSTALL PASTEBOARD
+choco install pasteboard
+
+#################################################################################
+## ssh-keygen
 ssh-keygen -t rsa -b 4096 -C "cybercastor@icloud.com" -g -f "C:\Users\radic\.ssh\id_cybercastor"
 ssh-keygen -t rsa -b 4096 -C "radicaltronic@gmail.com" -g -f "C:\Users\radic\.ssh\id_radicaltronic"
 ssh-keygen -t rsa -b 4096 -C "zolaternative@icloud.com" -g -f "C:\Users\radic\.ssh\id_anonymous"
 ssh-keygen -t rsa -b 4096 -C "guillaumeplante.qc@gmail.com" -g -f "C:\Users\radic\.ssh\id_arsscriptum"
+
+$Username = 
 # CONFIGURE GITHUB ACCOUNT: cybercastor
-# type "C:\Users\radic\.ssh\id_cybercastor.pub" | pbcopy.exe  
+# type "C:\Users\$ENV:USERNAME\.ssh\id_cybercastor.pub" | pbcopy.exe  
 # CONFIGURE GITHUB ACCOUNT: radicaltronic
-# type "C:\Users\radic\.ssh\id_radicaltronic.pub" | pbcopy.exe  
+# type "C:\Users\$ENV:USERNAME\.ssh\id_radicaltronic.pub" | pbcopy.exe  
 # CONFIGURE GITHUB ACCOUNT: vcvzsds7868745 
-# type "C:\Users\radic\.ssh\id_anonymous.pub" | pbcopy.exe   
+# type "C:\Users\$ENV:USERNAME\.ssh\id_anonymous.pub" | pbcopy.exe   
 # CONFIGURE GITHUB ACCOUNT: vcvzsds7868745 
-# type "C:\Users\radic\.ssh\id_arsscriptum.pub" | pbcopy.exe  
+# type "C:\Users\$ENV:USERNAME\.ssh\id_arsscriptum.pub" | pbcopy.exe  
 
 

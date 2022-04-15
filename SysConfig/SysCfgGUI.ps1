@@ -13,7 +13,7 @@
 # ============================================================================================================
 $Script:GIT_WINDOWS_64_URL      = 'https://github.com/git-for-windows/git/releases/download/v2.35.1.windows.2/Git-2.35.1.2-64-bit.exe'
 
-$Script:DATA_DRIVE             = "x:\"
+$Script:DATA_DRIVE             = "c:\"
 $Script:TEST_MODE              = "$false"
 $Script:QUIET_MODE             = "$Quiet"
 $Script:DEV_ROOT               = Join-Path "$Script:DATA_DRIVE" "Development"
