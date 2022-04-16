@@ -33,7 +33,7 @@ function New-SimpleButton([int]$x,[int]$y){
 }
 
 $Script:Form                        = New-Object system.Windows.Forms.Form
-$Script:Form.ClientSize             = New-Object System.Drawing.Point(550,300)
+$Script:Form.ClientSize             = New-Object System.Drawing.Point(550,400)
 $Script:Form.StartPosition          = 'CenterScreen'
 $Script:Form.FormBorderStyle        = 'FixedSingle'
 $Script:Form.MinimizeBox            = $false
@@ -159,7 +159,7 @@ $Script:Button31.Font               = $Script:ButtonSmallFont
 $Script:Button31.ForeColor          = $Script:ButtonTextColor
 
 $Script:Label02                     = New-Object system.Windows.Forms.Label
-$Script:Label02.text                = "Label02"
+$Script:Label02.text                = "Refresh Env"
 $Script:Label02.AutoSize            = $true
 $Script:Label02.width               = 457
 $Script:Label02.height              = 142
@@ -170,7 +170,7 @@ $Script:Label02.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button04                    = New-Object system.Windows.Forms.Button
 $Script:Button04.FlatStyle          = 'Flat'
-$Script:Button04.text               = "SystemEnvironmentValues"
+$Script:Button04.text               = "Refresh Environment Values"
 $Script:Button04.width              = 460
 $Script:Button04.height             = 30
 $Script:Button04.Anchor             = 'top,right,left'
@@ -179,7 +179,7 @@ $Script:Button04.Font               = $Script:ButtonSmallFont
 $Script:Button04.ForeColor          = $Script:ButtonTextColor
 
 $Script:Label03                     = New-Object system.Windows.Forms.Label
-$Script:Label03.text                = "Label 03"
+$Script:Label03.text                = "Module Init/Setup"
 $Script:Label03.AutoSize            = $true
 $Script:Label03.width               = 457
 $Script:Label03.height              = 142
@@ -191,7 +191,7 @@ $Script:Label03.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button05                    = New-Object system.Windows.Forms.Button
 $Script:Button05.FlatStyle          = 'Flat'
-$Script:Button05.text               = "Button05"
+$Script:Button05.text               = "Module.Builder"
 $Script:Button05.width              = 133
 $Script:Button05.height             = 30
 $Script:Button05.Anchor             = 'top,right,left'
@@ -201,7 +201,7 @@ $Script:Button05.ForeColor          = $Script:ButtonTextColor
 
 $Script:Button06                    = New-Object system.Windows.Forms.Button
 $Script:Button06.FlatStyle          = 'Flat'
-$Script:Button06.text               = "06"
+$Script:Button06.text               = "Module.Downloader"
 $Script:Button06.width              = 133
 $Script:Button06.height             = 30
 $Script:Button06.Anchor             = 'top,right,left'
@@ -231,7 +231,7 @@ $Script:Label04.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button07                    = New-Object system.Windows.Forms.Button
 $Script:Button07.FlatStyle          = 'Flat'
-$Script:Button07.text               = "7"
+$Script:Button07.text               = "Shim Install Menu"
 $Script:Button07.width              = 134
 $Script:Button07.height             = 30
 $Script:Button07.Anchor             = 'top,right,left'

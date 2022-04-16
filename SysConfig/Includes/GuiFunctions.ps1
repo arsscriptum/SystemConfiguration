@@ -310,6 +310,46 @@ function Script:RefreshEnvironmentVariables {
 }
 
 
+function Script:Invoke-ModuleBuilderSetup{
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+
+    $ProfilePath = (Get-Item $Profile).DirectoryName
+    $ProjectsPath = Join-Path $ProfilePath "Projects"
+    $SetupPath = Join-Path $ProjectsPath "PowerShell.ModuleBuilder\setup"
+    Push-Location $SetupPath
+    . "./Setup.ps1"
+    Pop-Location
+
+    $RegEdExe = (Get-Command "regedit.exe").Source ; 
+    Invoke-Command -ScriptBlock { &"$RegEdExe" } ;
+}
+
+function Script:Invoke-ModuleDownloaderSetup{
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+    
+    $ProfilePath = (Get-Item $Profile).DirectoryName
+    $ProjectsPath = Join-Path $ProfilePath "Module-Development"
+    $SetupPath = Join-Path $ProjectsPath "PowerShell.Module.Downloader\setup"
+    Push-Location $SetupPath
+    . "./Setup.ps1" -Quiet
+    Pop-Location
+}
+
+function Script:Invoke-ModuleShimSetup{
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+    
+    $ProfilePath = (Get-Item $Profile).DirectoryName
+    $ProjectsPath = Join-Path $ProfilePath "Module-Development"
+    $SetupPath = Join-Path $ProjectsPath "PowerShell.Module.Shim\setup"
+    Push-Location $SetupPath
+    . "./Install-Menu.ps1" -Quiet
+    Pop-Location
+}
+
+
 function RestartWithAdminPriv{
 
     $Text = "
