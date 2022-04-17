@@ -337,7 +337,21 @@ function Script:Invoke-ModuleDownloaderSetup{
     Pop-Location
 }
 
-function Script:Invoke-ModuleShimSetup{
+
+function Script:Invoke-ModuleShimInit{
+    [CmdletBinding(SupportsShouldProcess)]
+    param()
+    
+    $ProfilePath = (Get-Item $Profile).DirectoryName
+    $ProjectsPath = Join-Path $ProfilePath "Module-Development"
+    $SetupPath = Join-Path $ProjectsPath "PowerShell.Module.Shim"
+    Push-Location $SetupPath
+    "make -i -d"
+    Pop-Location
+}
+
+
+function Script:Invoke-ModuleShimMenuSetup{
     [CmdletBinding(SupportsShouldProcess)]
     param()
     
@@ -347,6 +361,8 @@ function Script:Invoke-ModuleShimSetup{
     Push-Location $SetupPath
     . "./Install-Menu.ps1" -Quiet
     Pop-Location
+
+    Initialize-ShimModule -Path 'C:\Programs\Shims\' -ShimGenPath 'C:\ProgramData\chocolatey\tools\shimgen.exe' -AddToPath
 }
 
 

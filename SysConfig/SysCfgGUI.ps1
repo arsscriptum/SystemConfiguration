@@ -155,10 +155,10 @@ $Script:TextBox01.Text = '_gp'
 #,$Script:Panel04,$Script:Panel05,$Script:Panel06
 $Script:Form.controls.AddRange(@($Script:Panel02,$Script:Panel03,$Script:Panel04,$Script:Panel01))
 $Script:Panel01.controls.AddRange(@($Script:Label01,$Script:Button01,$Script:ListBox01,$Script:TextBox01,$Script:Button02,$Button03,$Button31))
-$Script:Panel02.controls.AddRange(@($Script:Label02,$Script:Button04,$Script:Button05))
-$Script:Panel03.controls.AddRange(@($Script:Label03,$Script:Button05,$Script:Button06))
-$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07))
-#$Script:Panel05.controls.AddRange(@($Script:Label05,$Script:Button08,$Script:Button09))
+$Script:Panel02.controls.AddRange(@($Script:Label02))
+$Script:Panel03.controls.AddRange(@($Script:Button05,$Script:Button06))
+$Script:Panel04.controls.AddRange(@($Script:Label04,$Script:Button07,$Script:Button08))
+$Script:Panel05.controls.AddRange(@($Script:Label05))
 #$Script:Panel06.controls.AddRange(@($Script:Label06,$Script:Button10,$Script:Button11,$Script:Button12,$Script:Button13,$Script:Button14))
 
 $Script:Button01.Add_Click( { Script:SetWellKnownPaths } )
@@ -175,7 +175,14 @@ $Script:Button05.Add_Click( {
     write-smsg '------------------------------------------------' ; 
 } ) 
 $Script:Button06.Add_Click( { Script:Invoke-ModuleDownloaderSetup } ) 
-$Script:Button07.Add_Click( { Script:Invoke-ModuleShimSetup } ) 
+$Script:Button07.Add_Click( { Script:Invoke-ModuleShimMenuSetup } ) 
+$Script:Button08.Add_Click( {  write-smsg 'import-module PowerShell.Module.Shim' ;
+    import-module PowerShell.Module.Shim; 
+    write-smsg 'Initialize-ShimModule' ;
+    Initialize-ShimModule -Path "C:\Programs\Shims\" -ShimGenPath "C:\ProgramData\chocolatey\tools\shimgen.exe" -AddToPath
+    
+
+} ) 
 
 
 [void]$Script:Form.showdialog()

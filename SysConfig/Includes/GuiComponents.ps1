@@ -85,27 +85,6 @@ $Script:Panel06.width               = 480
 $Script:Panel06.Anchor              = 'top,right,left'
 $Script:Panel06.location            = New-Object System.Drawing.Point(10,400)
 
-$Script:Label01                     = New-Object system.Windows.Forms.Label
-$Script:Label01.text                = "well known paths and pwsh directories"
-$Script:Label01.AutoSize            = $true
-$Script:Label01.width               = 457
-$Script:Label01.height              = 142
-$Script:Label01.Anchor              = 'top,right,left'
-$Script:Label01.location            = New-Object System.Drawing.Point(10,9)
-$Script:Label01.Font                = $Script:LabelSmallFont
-$Script:Label01.ForeColor           = $Script:ButtonTextColor
-
-
-
-$Script:Button01                    = New-Object system.Windows.Forms.Button
-$Script:Button01.FlatStyle          = 'Flat'
-$Script:Button01.text               = "Create wellknown paths"
-$Script:Button01.width              = 260
-$Script:Button01.height             = 30
-$Script:Button01.Anchor             = 'top,right,left'
-$Script:Button01.location           = New-Object System.Drawing.Point(210,40)
-$Script:Button01.Font               = $Script:ButtonSmallFont
-$Script:Button01.ForeColor          = $Script:ButtonTextColor
 
 $Script:ListBox01                   = New-Object System.Windows.Forms.ListBox
 $Script:ListBox01.FlatStyle         = 'Flat'
@@ -127,6 +106,93 @@ $Script:TextBox01.Font              = $Script:ButtonBigFont
 $Script:TextBox01.ForeColor         = $Script:TextForeColor
 $Script:TextBox01.BackColor         = $Script:TextBackColor
 
+
+$Script:Label01                     = New-Object system.Windows.Forms.Label
+$Script:Label01.text                = "well known paths and pwsh directories"
+$Script:Label01.AutoSize            = $true
+$Script:Label01.width               = 457
+$Script:Label01.height              = 142
+$Script:Label01.Anchor              = 'top,right,left'
+$Script:Label01.location            = New-Object System.Drawing.Point(10,9)
+$Script:Label01.Font                = $Script:LabelSmallFont
+$Script:Label01.ForeColor           = $Script:ButtonTextColor
+
+
+
+$Script:Label02                     = New-Object system.Windows.Forms.Label
+$Script:Label02.text                = "Refresh Env"
+$Script:Label02.AutoSize            = $true
+$Script:Label02.width               = 457
+$Script:Label02.height              = 142
+$Script:Label02.Anchor              = 'top,right,left'
+$Script:Label02.location            = New-Object System.Drawing.Point(10,10)
+$Script:Label02.Font                = $Script:LabelSmallFont
+$Script:Label02.ForeColor           = $Script:ButtonTextColor
+
+$Script:Label03                     = New-Object system.Windows.Forms.Label
+$Script:Label03.text                = "Module Init"
+$Script:Label03.AutoSize            = $true
+$Script:Label03.width               = 457
+$Script:Label03.height              = 142
+$Script:Label03.Anchor              = 'top,right,left'
+$Script:Label03.location            = New-Object System.Drawing.Point(10,0)
+$Script:Label03.Font                = $Script:LabelSmallFont
+$Script:Label03.ForeColor           = $Script:ButtonTextColor
+
+
+$Script:Label04                     = New-Object system.Windows.Forms.Label
+$Script:Label04.text                = "Label 4"
+$Script:Label04.AutoSize            = $true
+$Script:Label04.width               = 457
+$Script:Label04.height              = 142
+$Script:Label04.Anchor              = 'top,right,left'
+$Script:Label03.location            = New-Object System.Drawing.Point(10,40)
+$Script:Label04.Font                = $Script:LabelSmallFont
+$Script:Label04.ForeColor           = $Script:ButtonTextColor
+
+
+
+$Script:Label05                     = New-Object system.Windows.Forms.Label
+$Script:Label05.text                = "label 5"
+$Script:Label05.AutoSize            = $true
+$Script:Label05.width               = 457
+$Script:Label05.height              = 142
+$Script:Label05.Anchor              = 'top,right,left'
+$Script:Label05.location            = New-Object System.Drawing.Point(10,10)
+$Script:Label05.Font                = $Script:LabelSmallFont
+$Script:Label05.ForeColor           = $Script:ButtonTextColor
+
+$Script:Label06                     = New-Object system.Windows.Forms.Label
+$Script:Label06.text                = "06"
+$Script:Label06.AutoSize            = $true
+$Script:Label06.width               = 457
+$Script:Label06.height              = 142
+$Script:Label06.Anchor              = 'top,right,left'
+$Script:Label06.location            = New-Object System.Drawing.Point(10,10)
+$Script:Label06.Font                = $Script:LabelSmallFont
+$Script:Label06.ForeColor           = $Script:ButtonTextColor
+
+
+$Script:Label99                     = New-Object system.Windows.Forms.Label
+$Script:Label99.text                = "Label 99"
+$Script:Label99.AutoSize            = $true
+$Script:Label99.width               = 457
+$Script:Label99.height              = 142
+$Script:Label99.Anchor              = 'top,right,left'
+$Script:Label99.location            = New-Object System.Drawing.Point(10,10)
+$Script:Label99.Font                = $Script:LabelSmallFont
+$Script:Label99.ForeColor           = $Script:ButtonTextColor
+
+
+$Script:Button01                    = New-Object system.Windows.Forms.Button
+$Script:Button01.FlatStyle          = 'Flat'
+$Script:Button01.text               = "Create wellknown paths"
+$Script:Button01.width              = 260
+$Script:Button01.height             = 30
+$Script:Button01.Anchor             = 'top,right,left'
+$Script:Button01.location           = New-Object System.Drawing.Point(210,40)
+$Script:Button01.Font               = $Script:ButtonSmallFont
+$Script:Button01.ForeColor          = $Script:ButtonTextColor
 $Script:Button02                    = New-Object system.Windows.Forms.Button
 $Script:Button02.FlatStyle          = 'Flat'
 $Script:Button02.text               = "Registry Organisation Root"
@@ -136,7 +202,6 @@ $Script:Button02.Anchor             = 'top,right,left'
 $Script:Button02.location           = New-Object System.Drawing.Point(210,80)
 $Script:Button02.Font               = $Script:ButtonSmallFont
 $Script:Button02.ForeColor          = $Script:ButtonTextColor
-
 
 $Script:Button03                    = New-Object system.Windows.Forms.Button
 $Script:Button03.FlatStyle          = 'Flat'
@@ -158,16 +223,6 @@ $Script:Button31.location           = New-Object System.Drawing.Point(245,120)
 $Script:Button31.Font               = $Script:ButtonSmallFont
 $Script:Button31.ForeColor          = $Script:ButtonTextColor
 
-$Script:Label02                     = New-Object system.Windows.Forms.Label
-$Script:Label02.text                = "Refresh Env"
-$Script:Label02.AutoSize            = $true
-$Script:Label02.width               = 457
-$Script:Label02.height              = 142
-$Script:Label02.Anchor              = 'top,right,left'
-$Script:Label02.location            = New-Object System.Drawing.Point(10,10)
-$Script:Label02.Font                = $Script:LabelSmallFont
-$Script:Label02.ForeColor           = $Script:ButtonTextColor
-
 $Script:Button04                    = New-Object system.Windows.Forms.Button
 $Script:Button04.FlatStyle          = 'Flat'
 $Script:Button04.text               = "Refresh Environment Values"
@@ -178,20 +233,10 @@ $Script:Button04.location           = New-Object System.Drawing.Point(10,40)
 $Script:Button04.Font               = $Script:ButtonSmallFont
 $Script:Button04.ForeColor          = $Script:ButtonTextColor
 
-$Script:Label03                     = New-Object system.Windows.Forms.Label
-$Script:Label03.text                = "Module Init/Setup"
-$Script:Label03.AutoSize            = $true
-$Script:Label03.width               = 457
-$Script:Label03.height              = 142
-$Script:Label03.Anchor              = 'top,right,left'
-$Script:Label03.location            = New-Object System.Drawing.Point(10,10)
-$Script:Label03.Font                = $Script:LabelSmallFont
-$Script:Label03.ForeColor           = $Script:ButtonTextColor
-
 
 $Script:Button05                    = New-Object system.Windows.Forms.Button
 $Script:Button05.FlatStyle          = 'Flat'
-$Script:Button05.text               = "Module.Builder"
+$Script:Button05.text               = "Builder"
 $Script:Button05.width              = 133
 $Script:Button05.height             = 30
 $Script:Button05.Anchor             = 'top,right,left'
@@ -201,7 +246,7 @@ $Script:Button05.ForeColor          = $Script:ButtonTextColor
 
 $Script:Button06                    = New-Object system.Windows.Forms.Button
 $Script:Button06.FlatStyle          = 'Flat'
-$Script:Button06.text               = "Module.Downloader"
+$Script:Button06.text               = "Downloader"
 $Script:Button06.width              = 133
 $Script:Button06.height             = 30
 $Script:Button06.Anchor             = 'top,right,left'
@@ -209,45 +254,27 @@ $Script:Button06.location           = New-Object System.Drawing.Point(10,80)
 $Script:Button06.Font               = $Script:ButtonSmallFont
 $Script:Button06.ForeColor          = $Script:ButtonTextColor
 
-$Script:Label99                     = New-Object system.Windows.Forms.Label
-$Script:Label99.text                = "Label 99"
-$Script:Label99.AutoSize            = $true
-$Script:Label99.width               = 457
-$Script:Label99.height              = 142
-$Script:Label99.Anchor              = 'top,right,left'
-$Script:Label99.location            = New-Object System.Drawing.Point(10,10)
-$Script:Label99.Font                = $Script:LabelSmallFont
-$Script:Label99.ForeColor           = $Script:ButtonTextColor
 
-$Script:Label04                     = New-Object system.Windows.Forms.Button
-$Script:Label04.FlatStyle           = 'Flat'
-$Script:Label04.text                = "label4"
-$Script:Label04.width               = 134
-$Script:Label04.height              = 30
-$Script:Label04.Anchor              = 'top,right,left'
-$Script:Label04.location            = New-Object System.Drawing.Point(10,40)
-$Script:Label04.Font                = $Script:ButtonSmallFont
-$Script:Label04.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button07                    = New-Object system.Windows.Forms.Button
 $Script:Button07.FlatStyle          = 'Flat'
-$Script:Button07.text               = "Shim Install Menu"
+$Script:Button07.text               = "Shim Menu"
 $Script:Button07.width              = 134
 $Script:Button07.height             = 30
 $Script:Button07.Anchor             = 'top,right,left'
-$Script:Button07.location           = New-Object System.Drawing.Point(10,80)
+$Script:Button07.location           = New-Object System.Drawing.Point(10,40)
 $Script:Button07.Font               = $Script:ButtonSmallFont
 $Script:Button07.ForeColor          = $Script:ButtonTextColor
 
-$Script:Label05                     = New-Object system.Windows.Forms.Label
-$Script:Label05.text                = "LAbel 5"
-$Script:Label05.AutoSize            = $true
-$Script:Label05.width               = 457
-$Script:Label05.height              = 142
-$Script:Label05.Anchor              = 'top,right,left'
-$Script:Label05.location            = New-Object System.Drawing.Point(10,10)
-$Script:Label05.Font                = $Script:LabelSmallFont
-$Script:Label05.ForeColor           = $Script:ButtonTextColor
+$Script:Button08                     = New-Object system.Windows.Forms.Button
+$Script:Button08.FlatStyle           = 'Flat'
+$Script:Button08.text                = "Init"
+$Script:Button08.width               = 134
+$Script:Button08.height              = 30
+$Script:Button08.Anchor              = 'top,right,left'
+$Script:Button08.location            = New-Object System.Drawing.Point(10,80)
+$Script:Button08.Font                = $Script:ButtonSmallFont
+$Script:Button08.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button09                    = New-Object system.Windows.Forms.Button
 $Script:Button09.FlatStyle          = 'Flat'
@@ -258,26 +285,6 @@ $Script:Button09.Anchor             = 'top,right,left'
 $Script:Button09.location           = New-Object System.Drawing.Point(10,40)
 $Script:Button09.Font               = $Script:ButtonSmallFont
 $Script:Button09.ForeColor          = $Script:ButtonTextColor
-
-$Script:Button08                    = New-Object system.Windows.Forms.Button
-$Script:Button08.FlatStyle          = 'Flat'
-$Script:Button08.text               = "Create PowerShell Directories"
-$Script:Button08.width              = 133
-$Script:Button08.height             = 30
-$Script:Button08.Anchor             = 'top,right,left'
-$Script:Button08.location           = New-Object System.Drawing.Point(10,80)
-$Script:Button08.Font               = $Script:ButtonSmallFont
-$Script:Button08.ForeColor          = $Script:ButtonTextColor
-
-$Script:Label06                     = New-Object system.Windows.Forms.Label
-$Script:Label06.text                = "06"
-$Script:Label06.AutoSize            = $true
-$Script:Label06.width               = 457
-$Script:Label06.height              = 142
-$Script:Label06.Anchor              = 'top,right,left'
-$Script:Label06.location            = New-Object System.Drawing.Point(10,10)
-$Script:Label06.Font                = $Script:LabelSmallFont
-$Script:Label06.ForeColor           = $Script:ButtonTextColor
 
 $Script:Button10                    = New-Object system.Windows.Forms.Button
 $Script:Button10.FlatStyle          = 'Flat'
@@ -311,7 +318,7 @@ $Script:Button13.ForeColor          = $Script:ButtonTextColor
 
 $Script:Button14                    = New-Object system.Windows.Forms.Button
 $Script:Button14.FlatStyle          = 'Flat'
-$Script:Button14.text               = "14"
+$Script:Button14.text               = "14 t"
 $Script:Button14.width              = 225
 $Script:Button14.height             = 30
 $Script:Button14.Anchor             = 'top,right,left'
