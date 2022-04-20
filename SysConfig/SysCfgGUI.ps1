@@ -1,3 +1,10 @@
+<#
+#̷𝓍   𝓐𝓡𝓢 𝓢𝓒𝓡𝓘𝓟𝓣𝓤𝓜 
+#̷𝓍   SystemConfig
+#̷𝓍   
+#̷𝓍   <guillaumeplante.qc@gmail.com>
+#̷𝓍   https://arsscriptum.github.io/
+#>
 
 
 [CmdletBinding(SupportsShouldProcess)] 

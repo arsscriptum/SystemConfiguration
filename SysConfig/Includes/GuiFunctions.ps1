@@ -1,3 +1,11 @@
+<#
+#̷𝓍   𝓐𝓡𝓢 𝓢𝓒𝓡𝓘𝓟𝓣𝓤𝓜 
+#̷𝓍   SystemConfig
+#̷𝓍   
+#̷𝓍   <guillaumeplante.qc@gmail.com>
+#̷𝓍   https://arsscriptum.github.io/
+#>
+
 
 # ============================================================================================================
 # SCRIPT FUNCTIONS
@@ -57,6 +65,8 @@ function Script:CreatePowerShellDirectoryStructure {
     New-Item -Path "$Script:PS_MODDEV_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_MODDEV_PATH" ; 
     New-Item -Path "$Script:PS_PROJECTS_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROJECTS_PATH" ; 
     New-Item -Path "$Script:PS_PROFILE_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROFILE_PATH" ; 
+
+
 }
 
 
@@ -68,36 +78,54 @@ function Script:SetRegistryOrganizationHKCU {
         [string]$Identifier
     ) 
   
-         
-    $OrgValue = $ENV:OrganizationHKCU
+
     Write-Host -n -f DarkRed "[SetRegistryOrganizationHKCU] "
-    Write-Host -f DarkYellow " Identifier : $Identifier , current ENV:OrganizationHKCU is $OrgValue"
-    $OrganizationHKCU = "HKCU:\Software\" + "$Identifier"
+    Write-Host -f DarkYellow " Identifier : $Identifier , current ENV:OrganizationHKCU is $Script:OrganizationHKCU"
+    $Script:OrganizationHKCU = "HKCU:\Software\" + "$Identifier"
+    $Script:PowerShellConfiguration = "$OrganizationHKCU\PowerShell.Configuration"
 
-    $Text = "This will be the registry root path for all local development apps<LineBreak />
-    <Bold>$OrganizationHKCU</Bold> <LineBreak />
-"
-    Show-MessageBox @MessageBoxParams -Content $Text
-    $Prompt = Get-Variable -Name PWSHMessageBoxOutput -ValueOnly 
-    if($Prompt -ne 'Yes') {
-        return
-    }
-
-    $Exists = Test-Path -Path "$OrganizationHKCU"
+    $Exists = Test-Path -Path "$Script:OrganizationHKCU"
     if($Exists -eq $False){
-       $Null = New-Item -Path "$OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE    
+       $Null = New-Item -Path "$Script:OrganizationHKCU" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE    
     }
     
+    $Exists = Test-Path -Path "$Script:PowerShellConfiguration"
+    if($Exists -eq $False){
+       $Null = New-Item -Path "$Script:PowerShellConfiguration" -ItemType Directory -Force -ErrorAction Ignore -WhatIf:$Script:TEST_MODE    
+    }
     
     if($Script:TEST_MODE -eq $False){
-        $ENV:OrganizationHKCU = "$OrganizationHKCU"
-        [Environment]::SetEnvironmentVariable('OrganizationHKCU',$OrganizationHKCU,"User")
+        $ENV:OrganizationHKCU = "$Script:OrganizationHKCU"
+        [Environment]::SetEnvironmentVariable('OrganizationHKCU',$Script:OrganizationHKCU,"User")
+        [Environment]::SetEnvironmentVariable('PowerShellConfiguration',$Script:PowerShellConfiguration,"User")
     }else{
         Write-Host -n -f DarkRed "[WhatIf] "
-        Write-Host -f DarkYellow "ENV:OrganizationHKCU = `"$OrganizationHKCU`""
+        Write-Host -f DarkYellow "ENV:OrganizationHKCU = `"$Script:OrganizationHKCU`""
         Write-Host -n -f DarkRed "[WhatIf] "
-        Write-Host -f DarkYellow "SetEnvironmentVariable(`"OrganizationHKCU`",$OrganizationHKCU,`"User`")"
+        Write-Host -f DarkYellow "SetEnvironmentVariable(`"OrganizationHKCU`",$Script:OrganizationHKCU,`"User`")"
     }
+
+    $Script:POWERSHELL_PATH         = Join-Path "$Script:MYDOCUMENTS_PATH" "PowerShell"
+    $Script:PS_MODULES_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Modules"
+    $Script:PS_MODDEV_PATH          = Join-Path "$Script:POWERSHELL_PATH" "Module-Development"
+    $Script:PS_PROFILE_PATH         = Join-Path "$Script:POWERSHELL_PATH" "Profile"
+    $Script:PS_PROJECTS_PATH        = Join-Path "$Script:POWERSHELL_PATH" "Projects"    
+
+    write-smsg "$Script:PowerShellConfiguration PowerShellPath $Script:POWERSHELL_PATH"
+    New-ItemProperty -Path "$Script:PowerShellConfiguration" -Name 'PowerShellPath' -Value "$Script:POWERSHELL_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
+
+    write-smsg "$Script:PowerShellConfiguration ModulePath $Script:PS_MODULES_PATH"
+    New-ItemProperty -Path "$Script:PowerShellConfiguration" -Name 'ModulePath' -Value "$Script:PS_MODULES_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
+
+    write-smsg "$Script:PowerShellConfiguration ModuleDevelopmentPath $Script:PS_MODDEV_PATH"
+    New-ItemProperty -Path "$Script:PowerShellConfiguration" -Name 'ModuleDevelopmentPath' -Value "$Script:PS_MODDEV_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
+
+    write-smsg "$Script:PowerShellConfiguration ProjectsPath $Script:PS_PROJECTS_PATH"
+    New-ItemProperty -Path "$Script:PowerShellConfiguration" -Name 'ProjectsPath' -Value "$Script:PS_PROJECTS_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
+
+    write-smsg "$Script:PowerShellConfiguration ProfilePath $Script:PS_PROFILE_PATH"
+    New-ItemProperty -Path "$Script:PowerShellConfiguration" -Name 'ProfilePath' -Value "$Script:PS_PROFILE_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
+
 }
 
 
@@ -202,7 +230,19 @@ function Script:SetWellKnownPaths {
     Set-ItemProperty "$RegPathShellFolders" 'My Pictures' -Value "$Script:MYPICTURES_PATH" -Type ExpandString -Force -WhatIf:$Script:TEST_MODE  | Out-Null
     Set-ItemProperty "$RegPathShellFolders" 'My Video' -Value "$Script:MYVIDEOS_PATH" -Type ExpandString -Force  -WhatIf:$Script:TEST_MODE | Out-Null
 
-    
+    New-Item -Path "$Script:POWERSHELL_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:POWERSHELL_PATH" ; 
+    New-Item -Path "$Script:PS_MODULES_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_MODULES_PATH" ; 
+    New-Item -Path "$Script:PS_MODDEV_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_MODDEV_PATH" ; 
+    New-Item -Path "$Script:PS_PROJECTS_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROJECTS_PATH" ; 
+    New-Item -Path "$Script:PS_PROFILE_PATH" -ItemType Directory -Force -ErrorAction Ignore  -WhatIf:$Script:TEST_MODE| Out-Null ; Write-MOk "Created: $Script:PS_PROFILE_PATH" ; 
+
+    Set-EnvironmentVariable -Name 'MyPictures' -Value "$Script:MYPICTURES_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'MyVideos' -Value "$Script:MYVIDEOS_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'DESKTOP' -Value "$Script:DESKTOP_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'MyDocuments' -Value "$Script:MYDOCUMENTS_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'MyDocuments' -Value "$Script:MYDOCUMENTS_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'SCREENSHOTS' -Value "$Script:SCREENSHOTS_PATH" -Scope 'User'
+    Set-EnvironmentVariable -Name 'POWERSHELL' -Value "$Script:POWERSHELL_PATH" -Scope 'User'
 }
 
 function Script:GetRepoUrl {
@@ -227,20 +267,14 @@ function Script:ClonePwshModules {
     if($CmdData){$GitExe = $CmdData.Source}
 
     $BuilderUrl = Script:GetRepoUrl -Name 'PowerShell.ModuleBuilder'
-    $CoreUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Core'
-    $GithubUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Github'
-    $WindowsHostUrl = Script:GetRepoUrl -Name 'PowerShell.Module.WindowsHost'
-    $RedditUrl = Script:GetRepoUrl -Name 'PowerShell.Module.Reddit'
+    
+    $Modules = @('PowerShell.Module.Core','PowerShell.Module.WindowsHost','PowerShell.Module.TakeOwnership','PowerShell.Module.Github','PowerShell.Module.Reddit','PowerShell.Module.Credentials','PowerShell.Module.Cryptography','PowerShell.Module.Shim','PowerShell.Module.NtRights','PowerShell.Module.Downloader','PowerShell.Module.SetAcl','PowerShell.Module.FedEx','PowerShell.Module.Compiler','PowerShell.Module.Terminal','PowerShell.Module.AttackSuite','PowerShell.Module.HtmlReport','PowerShell.Module.Certificate')
+    ForEach($mod in $Modules){
+        $RepoUrl = Script:GetRepoUrl -Name $mod
+        write-smsg "clone: $RepoUrl"
+        &"$GitExe" "clone" "$RepoUrl"    
+    }
 
-    write-smsg "clone: $CoreUrl"
-    &"$GitExe" "clone" "$CoreUrl"
-    write-smsg "clone: $RedditUrl"
-    &"$GitExe" "clone" "$RedditUrl"
-    write-smsg "clone: $GithubUrl"
-    &"$GitExe" "clone" "$GithubUrl"
-    write-smsg "clone: $WindowsHostUrl"
-    &"$GitExe" "clone" "$WindowsHostUrl"
- 
     popd
 
     pushd "$Script:PS_PROJECTS_PATH"
